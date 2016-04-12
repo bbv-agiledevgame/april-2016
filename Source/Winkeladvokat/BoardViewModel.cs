@@ -3,9 +3,11 @@ using System.Runtime.CompilerServices;
 
 namespace Winkeladvokat
 {
+    using System.Collections.Generic;
+
     public class BoardViewModel : INotifyPropertyChanged
     {
-        private readonly int[,] boardfieldValues = 
+        private readonly int[,] boardfieldValues =
             {
                 { 0, 2, 2, 2, 2, 2, 2, 0 },
                 { 2, 4, 4, 4, 4, 4, 4, 2 },
@@ -17,31 +19,31 @@ namespace Winkeladvokat
                 { 0, 2, 2, 2, 2, 2, 2, 0 }
             };
 
-        private readonly BoardFieldViewModel[,] boardfields;
-
         public BoardViewModel()
         {
-            var xLenght = this.boardfieldValues.GetLength(0); 
-            var yLength = this.boardfieldValues.GetLength(1);
-
-            this.boardfields = new BoardFieldViewModel[xLenght, yLength];
-
-            for (int y = 0; y < yLength; y++)
-            {
-                for (int x = 0; x < xLenght; x++)
-                {
-                    var value = boardfieldValues[x, y];
-                    this.boardfields[x, y] = new BoardFieldViewModel(value);
-                }
-            }
+            Fields = CreateFields();
         }
 
-        public BoardFieldViewModel[,] BoardFields
-        {
-            get { return this.boardfields; }    
-        }
+        public List<List<int>> Fields { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private List<List<int>> CreateFields()
+        {
+            List<List<int>> fields = new List<List<int>>();
+
+            for (int row = 0; row < 8; row++)
+            {
+                fields.Add(new List<int>());
+
+                for (int column = 0; column < 8; column++)
+                {
+                    fields[row].Add(boardfieldValues[row, column]);
+                }
+            }
+
+            return fields;
+        }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
