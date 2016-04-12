@@ -36,7 +36,7 @@ namespace Winkeladvokat
             }
         }
 
-        public BoardFieldViewModel[,] BoardFieldsViewModel
+        public BoardFieldViewModel[,] BoardFields
         {
             get { return this.boardfields; }    
         }
