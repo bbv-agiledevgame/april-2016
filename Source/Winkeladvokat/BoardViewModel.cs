@@ -14,7 +14,7 @@ namespace Winkeladvokat
                 { 2, 4, 8,16,16, 8, 4, 2 },
                 { 2, 4, 8, 8, 8, 8, 4, 2 },
                 { 2, 4, 4, 4, 4, 4, 4, 2 },
-                { 2, 2, 2, 2, 2, 2, 2, 0 }
+                { 0, 2, 2, 2, 2, 2, 2, 0 }
             };
 
         private readonly BoardFieldViewModel[,] boardfields;
