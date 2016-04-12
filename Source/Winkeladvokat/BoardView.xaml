@@ -1,107 +1,45 @@
 ﻿<UserControl x:Class="Winkeladvokat.BoardView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:l="clr-namespace:Winkeladvokat"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
-             DataContext="">
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <UserControl.DataContext>
+        <l:BoardViewModel />
+    </UserControl.DataContext>
     <UserControl.Resources>
-        <l:BoardViewModel x:Key="Board" />
+        <DataTemplate x:Key="FieldItem">
+            <Border Background="GhostWhite"
+                    BorderBrush="Gainsboro"
+                    BorderThickness="1">
+                <StackPanel Width="50" Height="50">
+                    <Label HorizontalAlignment="Center"
+                           Content="{Binding}"
+                           FontSize="14"
+                           FontWeight="Bold" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="BoardTemplate">
+            <ItemsControl ItemTemplate="{DynamicResource FieldItem}" ItemsSource="{Binding}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </DataTemplate>
     </UserControl.Resources>
-
-    <Grid x:Name="Board"
-          Height="300"
-          Width="300"
-          DataContext="{StaticResource Board}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Rectangle Grid.Column="0"
-                   Grid.Row="0"
-                   Fill="Yellow"
-                   HorizontalAlignment="Stretch"
-                   VerticalAlignment="Stretch"/>
-        <Ellipse Grid.Column="0" Grid.Row="0"
-                Canvas.Top="50"
-                Canvas.Left="50"
-                Fill="Yellow"
-                Height="{Binding RowDefinitions/ActualHeight, ElementName=Row1, Mode=OneWay}"
-                Width="{Binding ColumnDefinitions/ActualWidth, ElementName=Col1, Mode=OneWay}"
-                StrokeThickness="5"
-                Stroke="Black"/>
-        <Rectangle Grid.Column="7"
-                   Grid.Row="0"
-                   Fill="Cyan"
-                   HorizontalAlignment="Stretch"
-                   VerticalAlignment="Stretch"/>
-        <Ellipse Grid.Column="7" Grid.Row="0"
-                Canvas.Top="50"
-                Canvas.Left="50"
-                Fill="Cyan"
-                Height="{Binding RowDefinitions/ActualHeight, ElementName=Row1, Mode=OneWay}"
-                Width="{Binding ColumnDefinitions/ActualWidth, ElementName=Col1, Mode=OneWay}"
-                StrokeThickness="5"
-                Stroke="Black"/>
-        <Rectangle Grid.Column="7"
-                   Grid.Row="7"
-                   Fill="Magenta"
-                   HorizontalAlignment="Stretch"
-                   VerticalAlignment="Stretch"/>
-        <Ellipse Grid.Column="7" Grid.Row="7"
-                Canvas.Top="50"
-                Canvas.Left="50"
-                Fill="Magenta"
-                Height="{Binding RowDefinitions/ActualHeight, ElementName=Row1, Mode=OneWay}"
-                Width="{Binding ColumnDefinitions/ActualWidth, ElementName=Col1, Mode=OneWay}"
-                StrokeThickness="5"
-                Stroke="Black"/>
-        <Rectangle Grid.Column="0"
-                   Grid.Row="7"
-                   Fill="Blue"
-                   HorizontalAlignment="Stretch"
-                   VerticalAlignment="Stretch"/>
-        <Ellipse Grid.Column="0" Grid.Row="7"
-                Canvas.Top="50"
-                Canvas.Left="50"
-                Fill="Blue"
-                Height="{Binding RowDefinitions/ActualHeight, ElementName=Row1, Mode=OneWay}"
-                Width="{Binding ColumnDefinitions/ActualWidth, ElementName=Col1, Mode=OneWay}"
-                StrokeThickness="5"
-                Stroke="Black"/>
-
-        <Border Grid.Column="7"
-                Grid.Row="7"
-                BorderThickness="1" 
-                BorderBrush="Gray"/>
-        <Label Grid.Column="3"
-               Grid.Row="3"
-               Background="Bisque"
-               Content="34"
-               FontSize="20"
-               FontWeight="Bold"
-               HorizontalContentAlignment="Center"
-               VerticalContentAlignment="Center"
-               HorizontalAlignment="Stretch"
-               VerticalAlignment="Stretch"/>
+    <Grid Width="Auto"
+          Height="Auto"
+          Background="Black">
+        <ItemsControl x:Name="lst"
+                      ItemTemplate="{DynamicResource BoardTemplate}"
+                      ItemsSource="{Binding Fields}" />
     </Grid>
 </UserControl>
 
