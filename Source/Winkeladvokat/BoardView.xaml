@@ -3,12 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:l="clr-namespace:Winkeladvokat"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             DataContext="">
+    <UserControl.Resources>
+        <l:BoardViewModel x:Key="Board" />
+    </UserControl.Resources>
 
     <Grid x:Name="Board"
           Height="300"
-          Width="300">
+          Width="300"
+          DataContext="{StaticResource Board}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -34,21 +40,54 @@
                    Fill="Yellow"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Stretch"/>
+        <Ellipse Grid.Column="0" Grid.Row="0"
+                Canvas.Top="50"
+                Canvas.Left="50"
+                Fill="Yellow"
+                Height="{Binding RowDefinitions/ActualHeight, ElementName=Row1, Mode=OneWay}"
+                Width="{Binding ColumnDefinitions/ActualWidth, ElementName=Col1, Mode=OneWay}"
+                StrokeThickness="5"
+                Stroke="Black"/>
         <Rectangle Grid.Column="7"
                    Grid.Row="0"
                    Fill="Cyan"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Stretch"/>
+        <Ellipse Grid.Column="7" Grid.Row="0"
+                Canvas.Top="50"
+                Canvas.Left="50"
+                Fill="Cyan"
+                Height="{Binding RowDefinitions/ActualHeight, ElementName=Row1, Mode=OneWay}"
+                Width="{Binding ColumnDefinitions/ActualWidth, ElementName=Col1, Mode=OneWay}"
+                StrokeThickness="5"
+                Stroke="Black"/>
         <Rectangle Grid.Column="7"
                    Grid.Row="7"
                    Fill="Magenta"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Stretch"/>
+        <Ellipse Grid.Column="7" Grid.Row="7"
+                Canvas.Top="50"
+                Canvas.Left="50"
+                Fill="Magenta"
+                Height="{Binding RowDefinitions/ActualHeight, ElementName=Row1, Mode=OneWay}"
+                Width="{Binding ColumnDefinitions/ActualWidth, ElementName=Col1, Mode=OneWay}"
+                StrokeThickness="5"
+                Stroke="Black"/>
         <Rectangle Grid.Column="0"
                    Grid.Row="7"
                    Fill="Blue"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Stretch"/>
+        <Ellipse Grid.Column="0" Grid.Row="7"
+                Canvas.Top="50"
+                Canvas.Left="50"
+                Fill="Blue"
+                Height="{Binding RowDefinitions/ActualHeight, ElementName=Row1, Mode=OneWay}"
+                Width="{Binding ColumnDefinitions/ActualWidth, ElementName=Col1, Mode=OneWay}"
+                StrokeThickness="5"
+                Stroke="Black"/>
+
         <Border Grid.Column="7"
                 Grid.Row="7"
                 BorderThickness="1" 

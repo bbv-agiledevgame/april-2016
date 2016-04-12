@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>bbvch.academy.Development</id>
+    <version>0.0.0</version>
+    <title>Winkeladvokat</title>
+    <authors>bbv Academy</authors>
+    <owners>bbv Academy</owners>
+    <licenseUrl>http://unlicense.org/</licenseUrl>
+    <projectUrl>https://github.com/bbvch-academy/agile-devgame-april-2016</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Used for build infrastructure.</description>
+    <copyright>Copyright 2016</copyright>
+    <tags>bbv academy</tags>
+	<releaseNotes></releaseNotes>
+    <developmentDependency>true</developmentDependency>
+  </metadata>
+</package>
