@@ -74,14 +74,17 @@
         public void MakeTurnShouldMovePlayerToNewPosition()
         {
             var newPosition = new Position(2, 4);
+            var newPositionTwo = new Position(5, 6);
             const int indexOfPlayerMakingTurn = 0;
             const int indexOfNextPlayer = 1;
 
             this.testee.MakeTurn(newPosition);
+            this.testee.MakeTurn(newPositionTwo);
 
-            this.testee.Players[indexOfPlayerMakingTurn].Position.X.Should().Be(newPosition.X);
-            this.testee.Players[indexOfPlayerMakingTurn].Position.Y.Should().Be(newPosition.Y);
+            this.testee.Players[indexOfPlayerMakingTurn].Position.X.Should().Be(newPositionTwo.X);
+            this.testee.Players[indexOfPlayerMakingTurn].Position.Y.Should().Be(newPositionTwo.Y);
             this.testee.Players.IndexOf(this.testee.CurrentPlayer).Should().Be(indexOfNextPlayer);
+            this.testee.Fields[5][6].Player.ShouldBeEquivalentTo(this.testee.Players[indexOfPlayerMakingTurn]);
         }
     }
 }

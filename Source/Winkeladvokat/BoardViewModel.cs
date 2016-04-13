@@ -22,11 +22,14 @@ namespace Winkeladvokat
             {0, 2, 2, 2, 2, 2, 2, 0}
         };
 
+        private int playerTurnCounter;
+
         public BoardViewModel()
         {
             this.Fields = this.CreateFields();
             this.Players = this.InitializePlayers();
             this.CurrentPlayer = this.Players[0];
+            this.playerTurnCounter = 0;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -46,12 +49,42 @@ namespace Winkeladvokat
         public void MakeTurn(Position endPosition)
         {
             this.CurrentPlayer.Position = endPosition;
-            this.EndTurn();
+            this.RemovePlayerOnPreviousBoardField(this.CurrentPlayer);
+            this.MovePlayerToNewBoardField(this.CurrentPlayer);
+            if (this.playerTurnCounter == 1)
+            {
+                this.EndTurn();
+                this.playerTurnCounter = 0;
+            }
+            else
+            {
+                this.playerTurnCounter++;
+            }
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private BoardField BoardFieldWithPosition(Position position)
+        {
+            return this.Fields.SelectMany(row => row).FirstOrDefault(boardField => boardField.Position.X == position.X && boardField.Position.Y == position.Y);
+        }
+
+        private void MovePlayerToNewBoardField(Player player)
+        {
+            var boardField = this.BoardFieldWithPosition(player.Position);
+            boardField.Player = player;
+        }
+
+        private void RemovePlayerOnPreviousBoardField(Player player)
+        {
+            var field = this.Fields.SelectMany(row => row).FirstOrDefault(boardField => boardField.Position.X == player.Position.X && boardField.Position.Y == player.Position.Y);
+            if (field != null)
+            {
+                field.Player = null;
+            }
         }
 
         private List<Player> InitializePlayers()
