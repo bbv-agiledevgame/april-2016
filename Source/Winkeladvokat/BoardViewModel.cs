@@ -7,6 +7,9 @@ namespace Winkeladvokat
 
     public class BoardViewModel : INotifyPropertyChanged
     {
+        public double FieldSize { get; set; }
+
+
         private readonly int[,] boardfieldValues =
             {
                 { 0, 2, 2, 2, 2, 2, 2, 0 },
@@ -22,7 +25,10 @@ namespace Winkeladvokat
         public BoardViewModel()
         {
             Fields = CreateFields();
+            FieldSize = 50;
         }
+
+        
 
         public List<List<int>> Fields { get; set; }
 
