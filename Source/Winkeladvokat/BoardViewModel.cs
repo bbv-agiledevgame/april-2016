@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
+using Winkeladvokat.Annotations;
 using Winkeladvokat.Models;
 using Winkeladvokat.Properties;
 
@@ -12,28 +13,16 @@ namespace Winkeladvokat
     public class BoardViewModel : INotifyPropertyChanged
     {
         private readonly int[,] boardfieldValues =
-            {
-                { 0, 2, 2, 2, 2, 2, 2, 0 },
-                { 2, 4, 4, 4, 4, 4, 4, 2 },
-                { 2, 4, 8, 8, 8, 8, 4, 2 },
-
-namespace Winkeladvokat
-{
-    using System.Collections.Generic;
-
-    public class BoardViewModel : INotifyPropertyChanged
-    {
-        private readonly int[,] boardfieldValues =
-            {
-                { 0, 2, 2, 2, 2, 2, 2, 0 },
-                { 2, 4, 4, 4, 4, 4, 4, 2 },
-                { 2, 4, 8, 8, 8, 8, 4, 2 },
-                { 2, 4, 8, 16, 16, 8, 4, 2 },
-                { 2, 4, 8, 16, 16, 8, 4, 2 },
-                { 2, 4, 8, 8, 8, 8, 4, 2 },
-                { 2, 4, 4, 4, 4, 4, 4, 2 },
-                { 0, 2, 2, 2, 2, 2, 2, 0 }
-            };
+        {
+            {0, 2, 2, 2, 2, 2, 2, 0},
+            {2, 4, 4, 4, 4, 4, 4, 2},
+            {2, 4, 8, 8, 8, 8, 4, 2},
+            {2, 4, 8, 16, 16, 8, 4, 2},
+            {2, 4, 8, 16, 16, 8, 4, 2},
+            {2, 4, 8, 8, 8, 8, 4, 2},
+            {2, 4, 4, 4, 4, 4, 4, 2},
+            {0, 2, 2, 2, 2, 2, 2, 0}
+        };
 
         public BoardViewModel()
         {
@@ -41,13 +30,6 @@ namespace Winkeladvokat
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public List<List<int>> Fields { get; set; }
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         public List<List<BoardField>> Fields { get; set; }
 
@@ -70,19 +52,29 @@ namespace Winkeladvokat
                     switch (index)
                     {
                         case 0:
-                            fields[row].Add(new BoardField(this.boardfieldValues[row, column], new SolidColorBrush(Colors.Red)));
+                            fields[row].Add(new BoardField(
+                                this.boardfieldValues[row, column],
+                                new SolidColorBrush(Colors.Red)));
                             break;
                         case 7:
-                            fields[row].Add(new BoardField(this.boardfieldValues[row, column], new SolidColorBrush(Colors.Blue)));
+                            fields[row].Add(new BoardField(
+                                this.boardfieldValues[row, column],
+                                new SolidColorBrush(Colors.Blue)));
                             break;
                         case 56:
-                            fields[row].Add(new BoardField(this.boardfieldValues[row, column], new SolidColorBrush(Colors.Green)));
+                            fields[row].Add(new BoardField(
+                                this.boardfieldValues[row, column],
+                                new SolidColorBrush(Colors.Green)));
                             break;
                         case 63:
-                            fields[row].Add(new BoardField(this.boardfieldValues[row, column], new SolidColorBrush(Colors.Yellow)));
+                            fields[row].Add(new BoardField(
+                                this.boardfieldValues[row, column],
+                                new SolidColorBrush(Colors.Yellow)));
                             break;
                         default:
-                            fields[row].Add(new BoardField(this.boardfieldValues[row, column], new SolidColorBrush(Colors.Transparent)));
+                            fields[row].Add(new BoardField(
+                                this.boardfieldValues[row, column],
+                                new SolidColorBrush(Colors.Transparent)));
                             break;
                     }
 
@@ -91,8 +83,6 @@ namespace Winkeladvokat
             }
 
             return fields;
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

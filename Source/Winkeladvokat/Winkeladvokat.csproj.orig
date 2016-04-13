@@ -61,9 +61,11 @@
     </ApplicationDefinition>
     <Compile Include="Converter\PlayerColorConverter.cs" />
     <Compile Include="Converter\FieldValueToVisibilityConverter.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\BoardField.cs" />
+=======
     <Compile Include="Models\PlayerColor.cs" />
-    <Compile Include="Properties\Annotations.cs" />
+>>>>>>> fe2812d9a3e449b3c95a6da4fadb47bb977d1006
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\IDialogService.cs" />
     <Page Include="BoardView.xaml">
