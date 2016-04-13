@@ -22,7 +22,7 @@
                             Height="{Binding DataContext.FieldSize, RelativeSource={RelativeSource FindAncestor,
                                                                                       AncestorType={x:Type Grid} }}"
                             HorizontalAlignment="Center" VerticalAlignment="Center"  Orientation="Vertical" 
-                            >
+                            Background="{Binding FieldColor}>
                     <Label HorizontalContentAlignment="Center"
                            VerticalContentAlignment="Center"
                            HorizontalAlignment="Stretch"
@@ -31,11 +31,12 @@
                            Height="{Binding DataContext.FieldSize, RelativeSource={RelativeSource FindAncestor,
                                                                                       AncestorType={x:Type Grid} }}"
                            
-                           Content="{Binding}"
+                           Content="{Binding Value}"
                            FontSize="16"
                            
                            FontWeight="Bold"
-                           Visibility="{Binding Converter={StaticResource converter}}" />
+                           Visibility="{Binding Value, Converter={StaticResource converter}}"
+                           />
                 </StackPanel>
             </Border>
         </DataTemplate>

@@ -50,9 +50,7 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="WindowsBase">
-      <Private>True</Private>
-    </Reference>
+    <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
   </ItemGroup>
@@ -63,18 +61,13 @@
     </ApplicationDefinition>
     <Compile Include="Converter\PlayerColorConverter.cs" />
     <Compile Include="Converter\FieldValueToVisibilityConverter.cs" />
-    <Compile Include="Models\AngleToken.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\BoardField.cs" />
-    <Compile Include="Models\ParagraphToken.cs" />
-    <Compile Include="Models\Player.cs" />
+=======
     <Compile Include="Models\PlayerColor.cs" />
-    <Compile Include="Models\Position.cs" />
-    <Compile Include="Models\Token.cs" />
-    <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Properties\GlobalAssemblyInfo.cs" />
+>>>>>>> fe2812d9a3e449b3c95a6da4fadb47bb977d1006
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\IDialogService.cs" />
-    <Compile Include="Utils.cs" />
     <Page Include="BoardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,6 +93,7 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Properties\GlobalAssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -133,19 +127,19 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.0\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Appccelerate.CheckHintPathTask.1.15.0\build\Appccelerate.CheckHintPathTask.targets" Condition="Exists('..\packages\Appccelerate.CheckHintPathTask.1.15.0\build\Appccelerate.CheckHintPathTask.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
+    <Error Condition="!Exists('..\packages\bbvch.academy.Development.ProductionCode.1.0.1\build\bbvch.academy.development.ProductionCode.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\bbvch.academy.Development.ProductionCode.1.0.1\build\bbvch.academy.development.ProductionCode.targets'))" />
+    <Error Condition="!Exists('..\packages\Appccelerate.VersionTask.1.22.0\build\Appccelerate.VersionTask.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Appccelerate.VersionTask.1.22.0\build\Appccelerate.VersionTask.targets'))" />
     <Error Condition="!Exists('..\packages\Appccelerate.CheckHintPathTask.1.15.0\build\Appccelerate.CheckHintPathTask.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Appccelerate.CheckHintPathTask.1.15.0\build\Appccelerate.CheckHintPathTask.targets'))" />
     <Error Condition="!Exists('..\packages\Appccelerate.CheckNugetDependenciesTask.1.13.0\build\Appccelerate.CheckNugetDependenciesTask.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Appccelerate.CheckNugetDependenciesTask.1.13.0\build\Appccelerate.CheckNugetDependenciesTask.targets'))" />
-    <Error Condition="!Exists('..\packages\Appccelerate.VersionTask.1.22.0\build\Appccelerate.VersionTask.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Appccelerate.VersionTask.1.22.0\build\Appccelerate.VersionTask.targets'))" />
-    <Error Condition="!Exists('..\packages\bbvch.academy.Development.ProductionCode.1.0.2\build\bbvch.academy.development.ProductionCode.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\bbvch.academy.Development.ProductionCode.1.0.2\build\bbvch.academy.development.ProductionCode.targets'))" />
   </Target>
-  <Import Project="..\packages\Appccelerate.CheckNugetDependenciesTask.1.13.0\build\Appccelerate.CheckNugetDependenciesTask.targets" Condition="Exists('..\packages\Appccelerate.CheckNugetDependenciesTask.1.13.0\build\Appccelerate.CheckNugetDependenciesTask.targets')" />
+  <Import Project="..\packages\bbvch.academy.Development.ProductionCode.1.0.1\build\bbvch.academy.development.ProductionCode.targets" Condition="Exists('..\packages\bbvch.academy.Development.ProductionCode.1.0.1\build\bbvch.academy.development.ProductionCode.targets')" />
   <Import Project="..\packages\Appccelerate.VersionTask.1.22.0\build\Appccelerate.VersionTask.targets" Condition="Exists('..\packages\Appccelerate.VersionTask.1.22.0\build\Appccelerate.VersionTask.targets')" />
-  <Import Project="..\packages\bbvch.academy.Development.ProductionCode.1.0.2\build\bbvch.academy.development.ProductionCode.targets" Condition="Exists('..\packages\bbvch.academy.Development.ProductionCode.1.0.2\build\bbvch.academy.development.ProductionCode.targets')" />
+  <Import Project="..\packages\Appccelerate.CheckHintPathTask.1.15.0\build\Appccelerate.CheckHintPathTask.targets" Condition="Exists('..\packages\Appccelerate.CheckHintPathTask.1.15.0\build\Appccelerate.CheckHintPathTask.targets')" />
+  <Import Project="..\packages\Appccelerate.CheckNugetDependenciesTask.1.13.0\build\Appccelerate.CheckNugetDependenciesTask.targets" Condition="Exists('..\packages\Appccelerate.CheckNugetDependenciesTask.1.13.0\build\Appccelerate.CheckNugetDependenciesTask.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
