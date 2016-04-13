@@ -5,7 +5,7 @@ namespace Winkeladvokat
 {
     public static class Utils
     {
-        public static Dictionary<int, Position> PlayerStartPositionsDictionary = new Dictionary<int, Position>()
+        public static Dictionary<int, Position> PlayerStartPositions = new Dictionary<int, Position>()
         {
             { 0, new Position(0, 0) },
             { 1, new Position(0, 7) },

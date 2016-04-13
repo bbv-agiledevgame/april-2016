@@ -12,20 +12,21 @@ namespace Winkeladvokat
     {
         private readonly int[,] boardfieldValues =
         {
-            { 0, 2, 2, 2, 2, 2, 2, 0 },
-            { 2, 4, 4, 4, 4, 4, 4, 2 },
-            { 2, 4, 8, 8, 8, 8, 4, 2 },
-            { 2, 4, 8, 16, 16, 8, 4, 2 },
-            { 2, 4, 8, 16, 16, 8, 4, 2 },
-            { 2, 4, 8, 8, 8, 8, 4, 2 },
-            { 2, 4, 4, 4, 4, 4, 4, 2 },
-            { 0, 2, 2, 2, 2, 2, 2, 0 }
+            {0, 2, 2, 2, 2, 2, 2, 0},
+            {2, 4, 4, 4, 4, 4, 4, 2},
+            {2, 4, 8, 8, 8, 8, 4, 2},
+            {2, 4, 8, 16, 16, 8, 4, 2},
+            {2, 4, 8, 16, 16, 8, 4, 2},
+            {2, 4, 8, 8, 8, 8, 4, 2},
+            {2, 4, 4, 4, 4, 4, 4, 2},
+            {0, 2, 2, 2, 2, 2, 2, 0}
         };
 
         public BoardViewModel()
         {
             this.Fields = this.CreateFields();
             this.Players = this.InitializePlayers();
+            this.CurrentPlayer = this.Players[0];
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -34,6 +35,14 @@ namespace Winkeladvokat
 
         public List<Player> Players { get; set; }
 
+        public Player CurrentPlayer { get; set; }
+
+        public void EndTurn()
+        {
+            var indexOfCurrentPlayer = this.Players.IndexOf(this.CurrentPlayer);
+            this.CurrentPlayer = indexOfCurrentPlayer < 3 ? this.Players[indexOfCurrentPlayer + 1] : this.Players[0];
+        }
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -41,7 +50,7 @@ namespace Winkeladvokat
 
         private List<Player> InitializePlayers()
         {
-            var playersList = Utils.PlayerStartPositionsDictionary.Select(pair => new Player(pair.Value)).ToList();
+            var playersList = Utils.PlayerStartPositions.Select(pair => new Player(pair.Value)).ToList();
             return playersList;
         }
 
