@@ -17,12 +17,13 @@
             <Border Background="GhostWhite"
                     BorderBrush="Gainsboro"
                     BorderThickness="1">
-                <StackPanel Width="50" Height="50">
+                <StackPanel Width="50" Height="50" Background="{Binding FieldColor}">
                     <Label HorizontalAlignment="Center"
-                           Content="{Binding}"
+                           Content="{Binding Value}"
                            FontSize="14"
                            FontWeight="Bold"
-                           Visibility="{Binding Converter={StaticResource converter}}" />
+                           Visibility="{Binding Value, Converter={StaticResource converter}}"
+                           />
                 </StackPanel>
             </Border>
         </DataTemplate>
