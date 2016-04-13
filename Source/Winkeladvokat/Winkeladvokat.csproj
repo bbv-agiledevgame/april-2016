@@ -64,10 +64,13 @@
     <Compile Include="Converter\PlayerColorConverter.cs" />
     <Compile Include="Converter\FieldValueToVisibilityConverter.cs" />
     <Compile Include="Models\BoardField.cs" />
+    <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PlayerColor.cs" />
+    <Compile Include="Models\Position.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\IDialogService.cs" />
+    <Compile Include="Utils.cs" />
     <Page Include="BoardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
