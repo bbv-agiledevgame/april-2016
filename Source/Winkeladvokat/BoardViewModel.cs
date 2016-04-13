@@ -32,8 +32,6 @@ namespace Winkeladvokat
             FieldSize = 50;
         }
 
-        public List<List<int>> Fields { get; set; }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public List<List<BoardField>> Fields { get; set; }

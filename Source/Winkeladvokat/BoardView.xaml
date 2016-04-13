@@ -22,7 +22,7 @@
                             Height="{Binding DataContext.FieldSize, RelativeSource={RelativeSource FindAncestor,
                                                                                       AncestorType={x:Type Grid} }}"
                             HorizontalAlignment="Center" VerticalAlignment="Center"  Orientation="Vertical" 
-                            Background="{Binding FieldColor}>
+                            Background="{Binding FieldColor}">
                     <Label HorizontalContentAlignment="Center"
                            VerticalContentAlignment="Center"
                            HorizontalAlignment="Stretch"
