@@ -32,11 +32,11 @@ namespace Winkeladvokat
         {
             List<List<int>> fields = new List<List<int>>();
 
-            for (int row = 0; row < 8; row++)
+            for (int row = 0; row < boardfieldValues.GetLength(0); row++)
             {
                 fields.Add(new List<int>());
 
-                for (int column = 0; column < 8; column++)
+                for (int column = 0; column < boardfieldValues.GetLength(1); column++)
                 {
                     fields[row].Add(boardfieldValues[row, column]);
                 }
