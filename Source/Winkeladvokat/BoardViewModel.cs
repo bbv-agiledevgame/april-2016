@@ -21,33 +21,33 @@ namespace Winkeladvokat
 
         public BoardViewModel()
         {
-            Fields = CreateFields();
+            this.Fields = this.CreateFields();
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public List<List<int>> Fields { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         private List<List<int>> CreateFields()
         {
             List<List<int>> fields = new List<List<int>>();
 
-            for (int row = 0; row < boardfieldValues.GetLength(0); row++)
+            for (int row = 0; row < this.boardfieldValues.GetLength(0); row++)
             {
                 fields.Add(new List<int>());
 
-                for (int column = 0; column < boardfieldValues.GetLength(1); column++)
+                for (int column = 0; column < this.boardfieldValues.GetLength(1); column++)
                 {
-                    fields[row].Add(boardfieldValues[row, column]);
+                    fields[row].Add(this.boardfieldValues[row, column]);
                 }
             }
 
             return fields;
-        }
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
