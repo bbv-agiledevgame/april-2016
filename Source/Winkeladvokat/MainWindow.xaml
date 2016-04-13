@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Winkeladvokat"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525"
+        Title="Winkel-Advokaten-Spiel" Height="700" Width="700"
         Closing="MainWindowOnClosing">
     <Grid>
         <local:BoardView/>
