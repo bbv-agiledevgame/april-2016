@@ -59,7 +59,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converter\PlayerColorConverter.cs" />
     <Compile Include="Converter\FieldValueToVisibilityConverter.cs" />
+    <Compile Include="Models\PlayerColor.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\IDialogService.cs" />
     <Page Include="BoardView.xaml">
