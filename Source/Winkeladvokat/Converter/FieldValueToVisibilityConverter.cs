@@ -5,7 +5,7 @@
     using System.Windows;
     using System.Windows.Data;
 
-    public class FieldValueToVisibilityConverter :IValueConverter
+    public class FieldValueToVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
