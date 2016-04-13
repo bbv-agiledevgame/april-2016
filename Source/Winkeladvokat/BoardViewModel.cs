@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Media;
+using Winkeladvokat.Models;
 
 namespace Winkeladvokat
 {
@@ -12,8 +14,8 @@ namespace Winkeladvokat
                 { 0, 2, 2, 2, 2, 2, 2, 0 },
                 { 2, 4, 4, 4, 4, 4, 4, 2 },
                 { 2, 4, 8, 8, 8, 8, 4, 2 },
-                { 2, 4, 8,16,16, 8, 4, 2 },
-                { 2, 4, 8,16,16, 8, 4, 2 },
+                { 2, 4, 8, 16, 16, 8, 4, 2 },
+                { 2, 4, 8, 16, 16, 8, 4, 2 },
                 { 2, 4, 8, 8, 8, 8, 4, 2 },
                 { 2, 4, 4, 4, 4, 4, 4, 2 },
                 { 0, 2, 2, 2, 2, 2, 2, 0 }
@@ -21,33 +23,33 @@ namespace Winkeladvokat
 
         public BoardViewModel()
         {
-            Fields = CreateFields();
+            this.Fields = this.CreateFields();
         }
-
-        public List<List<int>> Fields { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private List<List<int>> CreateFields()
+        public List<List<BoardField>> Fields { get; set; }
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            List<List<int>> fields = new List<List<int>>();
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
-            for (int row = 0; row < 8; row++)
+        private List<List<BoardField>> CreateFields()
+        {
+            var fields = new List<List<BoardField>>();
+
+            for (var row = 0; row < 8; row++)
             {
-                fields.Add(new List<int>());
+                fields.Add(new List<BoardField>());
 
-                for (int column = 0; column < 8; column++)
+                for (var column = 0; column < 8; column++)
                 {
-                    fields[row].Add(boardfieldValues[row, column]);
+                    fields[row].Add(new BoardField(this.boardfieldValues[row, column], Colors.Transparent));
                 }
             }
 
             return fields;
-        }
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

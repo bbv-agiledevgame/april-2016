@@ -60,6 +60,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converter\FieldValueToVisibilityConverter.cs" />
+    <Compile Include="Models\BoardField.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\IDialogService.cs" />
     <Page Include="BoardView.xaml">

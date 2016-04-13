@@ -19,10 +19,11 @@
                     BorderThickness="1">
                 <StackPanel Width="50" Height="50">
                     <Label HorizontalAlignment="Center"
-                           Content="{Binding}"
+                           Content="{Binding Value}"
                            FontSize="14"
                            FontWeight="Bold"
-                           Visibility="{Binding Converter={StaticResource converter}}" />
+                           Visibility="{Binding Converter={StaticResource converter}}"
+                           Background="{Binding FieldColor}"/>
                 </StackPanel>
             </Border>
         </DataTemplate>
