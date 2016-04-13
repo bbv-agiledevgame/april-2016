@@ -2,9 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Media;
-using Winkeladvokat.Annotations;
 using Winkeladvokat.Models;
-using Winkeladvokat.Properties;
 
 namespace Winkeladvokat
 {
@@ -52,24 +50,25 @@ namespace Winkeladvokat
                     switch (index)
                     {
                         case 0:
-                            fields[row].Add(new BoardField(
+                            var boardField = new BoardField(
                                 this.boardfieldValues[row, column],
-                                new SolidColorBrush(Colors.Red)));
+                                new SolidColorBrush(Colors.Cyan));
+                            fields[row].Add(boardField);
                             break;
                         case 7:
                             fields[row].Add(new BoardField(
                                 this.boardfieldValues[row, column],
-                                new SolidColorBrush(Colors.Blue)));
+                                new SolidColorBrush(Colors.Magenta)));
                             break;
                         case 56:
                             fields[row].Add(new BoardField(
                                 this.boardfieldValues[row, column],
-                                new SolidColorBrush(Colors.Green)));
+                                new SolidColorBrush(Colors.Yellow)));
                             break;
                         case 63:
                             fields[row].Add(new BoardField(
                                 this.boardfieldValues[row, column],
-                                new SolidColorBrush(Colors.Yellow)));
+                                new SolidColorBrush(Colors.Blue)));
                             break;
                         default:
                             fields[row].Add(new BoardField(
