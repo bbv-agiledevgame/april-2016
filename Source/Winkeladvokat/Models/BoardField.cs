@@ -4,7 +4,7 @@ namespace Winkeladvokat.Models
 {
     public class BoardField
     {
-        public BoardField(int value, Color color)
+        public BoardField(int value, Brush color)
         {
             this.Value = value;
             this.FieldColor = color;
@@ -12,6 +12,6 @@ namespace Winkeladvokat.Models
 
         public int Value { get; set; }
 
-        public Color FieldColor { get; set; }
+        public Brush FieldColor { get; set; }
     }
 }

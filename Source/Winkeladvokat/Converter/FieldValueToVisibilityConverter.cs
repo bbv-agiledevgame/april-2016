@@ -1,6 +1,4 @@
-﻿using Winkeladvokat.Models;
-
-namespace Winkeladvokat.Converter
+﻿namespace Winkeladvokat.Converter
 {
     using System;
     using System.Globalization;
@@ -11,7 +9,7 @@ namespace Winkeladvokat.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            int numericValue = System.Convert.ToInt32(((BoardField)value).Value);
+            int numericValue = System.Convert.ToInt32(value);
 
             return numericValue != 0 ? Visibility.Visible : Visibility.Hidden;
         }
