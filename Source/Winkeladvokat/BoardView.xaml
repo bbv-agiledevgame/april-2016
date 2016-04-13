@@ -40,7 +40,9 @@
     </UserControl.Resources>
     <Grid Width="Auto"
           Height="Auto"
-          Background="Black">
+          Background="Black"
+          HorizontalAlignment="Center"
+          VerticalAlignment="Center">
         <ItemsControl x:Name="lst"
                       ItemTemplate="{DynamicResource BoardTemplate}"
                       ItemsSource="{Binding Fields}" />
