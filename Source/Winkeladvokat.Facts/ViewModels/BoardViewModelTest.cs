@@ -69,5 +69,19 @@
 
             this.testee.Players.IndexOf(this.testee.CurrentPlayer).Should().Be(indexOfCurrentPlayer);
         }
+
+        [Fact]
+        public void MakeTurnShouldMovePlayerToNewPosition()
+        {
+            var newPosition = new Position(2, 4);
+            const int indexOfPlayerMakingTurn = 0;
+            const int indexOfNextPlayer = 1;
+
+            this.testee.MakeTurn(newPosition);
+
+            this.testee.Players[indexOfPlayerMakingTurn].Position.X.Should().Be(newPosition.X);
+            this.testee.Players[indexOfPlayerMakingTurn].Position.Y.Should().Be(newPosition.Y);
+            this.testee.Players.IndexOf(this.testee.CurrentPlayer).Should().Be(indexOfNextPlayer);
+        }
     }
 }

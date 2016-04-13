@@ -43,6 +43,12 @@ namespace Winkeladvokat
             this.CurrentPlayer = indexOfCurrentPlayer < 3 ? this.Players[indexOfCurrentPlayer + 1] : this.Players[0];
         }
 
+        public void MakeTurn(Position endPosition)
+        {
+            this.CurrentPlayer.Position = endPosition;
+            this.EndTurn();
+        }
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
