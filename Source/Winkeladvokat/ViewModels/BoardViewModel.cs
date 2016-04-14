@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -17,10 +18,11 @@ namespace Winkeladvokat.ViewModels
         private readonly Board board;
         private readonly MovementFinder movementFinder;
         private IMovement currentMovement;
+        private BoardBuilder boardBuilder;
 
         public BoardViewModel()
         {
-            BoardBuilder boardBuilder = new BoardBuilder();
+            this.boardBuilder = new BoardBuilder();
             this.board = boardBuilder.CreateBoard();
             this.movementFinder = new MovementFinder(this.board);
             this.Players = this.InitializePlayers();
@@ -68,8 +70,7 @@ namespace Winkeladvokat.ViewModels
 
         private List<Player> InitializePlayers()
         {
-            var playersList = Utils.PlayerStartPositions.Select(pair => new Player(pair.Value)).ToList();
-
+            var playersList = Utils.PlayerStartPositions.Select(pair => new Player(pair.Value, this.boardBuilder.PlayerColors[pair.Key])).ToList();
             return playersList;
         }
 
