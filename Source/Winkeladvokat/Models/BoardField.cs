@@ -7,7 +7,7 @@ namespace Winkeladvokat.Models
     [ImplementPropertyChanged]
     public class BoardField
     {
-        public BoardField(int value, Brush color, Point position)
+        public BoardField(int value, Brush color, Models.Position position)
         {
             this.Value = value;
             this.FieldColor = color;
@@ -16,14 +16,14 @@ namespace Winkeladvokat.Models
 
         public static BoardField Empty
         {
-            get { return new BoardField(0, new SolidColorBrush(Colors.Transparent), default(Point)); }
+            get { return new BoardField(0, new SolidColorBrush(Colors.Transparent), default(Position)); }
         }
 
         public int Value { get; set; }
 
         public Brush FieldColor { get; set; }
 
-        public Point Position { get; set; }
+        public Position Position { get; set; }
 
         public Token Token { get; set; }
 

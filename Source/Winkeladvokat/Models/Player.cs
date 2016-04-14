@@ -6,11 +6,11 @@ namespace Winkeladvokat.Models
     [ImplementPropertyChanged]
     public class Player
     {
-        public Player(Point position)
+        public Player(Position position)
         {
             this.Position = position;
         }
 
-        public Point Position { get; set; }
+        public Position Position { get; set; }
     }
 }

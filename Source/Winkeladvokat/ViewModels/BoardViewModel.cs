@@ -75,11 +75,11 @@ namespace Winkeladvokat.ViewModels
 
         private void InitializeTokens()
         {
-            List<Point> corners = Utils.PlayerStartPositions.Select(x => x.Value).ToList();
+            List<Models.Position> corners = Utils.PlayerStartPositions.Select(x => x.Value).ToList();
             int index = 0;
             foreach (var cornerPosition in corners)
             {
-                BoardField field = this.Fields[(int)cornerPosition.Y][(int)cornerPosition.X];
+                BoardField field = this.Fields[cornerPosition.Y][cornerPosition.X];
 
                 if (field == null)
                 {
