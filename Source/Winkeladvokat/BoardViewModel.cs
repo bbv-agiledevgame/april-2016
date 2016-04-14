@@ -1,15 +1,12 @@
-﻿using System;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Windows.Media;
-using Winkeladvokat.Models;
-
-namespace Winkeladvokat
+﻿namespace Winkeladvokat
 {
+    using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Windows.Media;
+    using Models;
 
-    public class BoardViewModel : INotifyPropertyChanged
+    public class BoardViewModel : PropertyChangedBase
     {
         private readonly int[,] boardfieldValues =
         {
@@ -34,8 +31,6 @@ namespace Winkeladvokat
             this.playerTurnCounter = 0;
             this.FieldSize = 50;
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public double FieldSize { get; set; }
 
@@ -70,11 +65,6 @@ namespace Winkeladvokat
             {
                 this.playerTurnCounter++;
             }
-        }
-
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private BoardField BoardFieldWithPosition(Position position)
