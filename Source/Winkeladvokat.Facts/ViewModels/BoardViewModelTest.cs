@@ -1,4 +1,6 @@
-﻿namespace Winkeladvokat.ViewModels
+﻿using System.Linq;
+
+namespace Winkeladvokat.ViewModels
 {
     using System.Windows.Media;
     using FluentAssertions;
@@ -85,6 +87,24 @@
             this.testee.Players[indexOfPlayerMakingTurn].Position.Y.Should().Be(newPositionTwo.Y);
             this.testee.Players.IndexOf(this.testee.CurrentPlayer).Should().Be(indexOfNextPlayer);
             this.testee.Fields[5][6].Player.ShouldBeEquivalentTo(this.testee.Players[indexOfPlayerMakingTurn]);
+        }
+
+        [Fact]
+        public void TesteeWhenInitializedThenBoardShouldHaveCorrectNumberOfFlatFields()
+        {
+            this.testee.FlatFields.Count.Should().Be(64);
+        }
+
+        [Fact]
+        public void TesteeWhenInitializedThenBoardShouldHavePlayerInEachCorner()
+        {
+            this.testee.FlatFields.Count(x => x.HasToken).Should().Be(4);
+        }
+
+        [Fact]
+        public void TesteeWhenInitializedThenBoardShouldHaveNoPlayerOtherFieldsThanCorner()
+        {
+            this.testee.FlatFields.Count(x => !x.HasToken).Should().Be(60);
         }
     }
 }

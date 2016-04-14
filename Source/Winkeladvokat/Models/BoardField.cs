@@ -9,6 +9,7 @@ namespace Winkeladvokat.Models
             this.Value = value;
             this.FieldColor = color;
             this.Position = position;
+            this.Player = null;
         }
 
         public int Value { get; set; }
@@ -19,7 +20,10 @@ namespace Winkeladvokat.Models
 
         public Player Player { get; set; }
 
-        public Token Token { get; set; }
+        public Player Token
+        {
+            get { return this.Player; }
+        }
 
         public bool HasToken
         {

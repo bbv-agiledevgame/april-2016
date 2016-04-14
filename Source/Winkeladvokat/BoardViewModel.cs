@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
@@ -28,6 +29,7 @@ namespace Winkeladvokat
         {
             this.Fields = this.CreateFields();
             this.Players = this.InitializePlayers();
+            this.InitializeTokens();
             this.CurrentPlayer = this.Players[0];
             this.playerTurnCounter = 0;
             this.FieldSize = 50;
@@ -38,6 +40,11 @@ namespace Winkeladvokat
         public double FieldSize { get; set; }
 
         public List<List<BoardField>> Fields { get; set; }
+
+        public List<BoardField> FlatFields
+        {
+            get { return this.Fields.SelectMany(x => x).ToList(); }
+        }
 
         public List<Player> Players { get; set; }
 
@@ -94,6 +101,24 @@ namespace Winkeladvokat
         {
             var playersList = Utils.PlayerStartPositions.Select(pair => new Player(pair.Value)).ToList();
             return playersList;
+        }
+
+        private void InitializeTokens()
+        {
+            List<Position> corners = Utils.PlayerStartPositions.Select(x => x.Value).ToList();
+            foreach (var cornerPosition in corners)
+            {
+                BoardField field = this.FlatFields.FirstOrDefault(
+                    f => f.Position.X == cornerPosition.X &&
+                    f.Position.Y == cornerPosition.Y);
+
+                if (field == null)
+                {
+                    throw new Exception("Field must not be null!");
+                }
+
+                field.Player = new Player(cornerPosition);
+            }
         }
 
         private List<List<BoardField>> CreateFields()
