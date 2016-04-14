@@ -18,5 +18,12 @@ namespace Winkeladvokat.Models
         public Position Position { get; set; }
 
         public Player Player { get; set; }
+
+        public Token Token { get; set; }
+
+        public bool HasToken
+        {
+            get { return this.Token != null; }
+        }
     }
 }

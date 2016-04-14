@@ -12,33 +12,43 @@
         <l:BoardViewModel />
     </UserControl.DataContext>
     <UserControl.Resources>
-        <converter:FieldValueToVisibilityConverter x:Key="converter" />
+        <converter:FieldValueToVisibilityConverter x:Key="FieldValueConverter" />
+        <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+        <DataTemplate x:Key="TokenTemplate">
+            <Ellipse Margin="3"
+                     Fill="Cyan"
+                     Stroke="Black"
+                     StrokeThickness="5"/>
+        </DataTemplate>
+
         <DataTemplate x:Key="FieldItem">
-            <Border Background="GhostWhite"
-                    BorderBrush="Gainsboro"
-                    BorderThickness="1">
-                <StackPanel Width="{Binding DataContext.FieldSize, RelativeSource={RelativeSource FindAncestor,
-                                                                                      AncestorType={x:Type Grid} }}"  
-                            Height="{Binding DataContext.FieldSize, RelativeSource={RelativeSource FindAncestor,
-                                                                                      AncestorType={x:Type Grid} }}"
-                            HorizontalAlignment="Center" VerticalAlignment="Center"  Orientation="Vertical" 
-                            Background="{Binding FieldColor}">
-                    <Label HorizontalContentAlignment="Center"
+            <Grid Width="{Binding DataContext.FieldSize, RelativeSource={RelativeSource FindAncestor,
+                                                                                        AncestorType={x:Type Grid} }}"
+                  Height="{Binding DataContext.FieldSize, RelativeSource={RelativeSource FindAncestor,
+                                                                                        AncestorType={x:Type Grid} }}">
+                <Border Background="GhostWhite"
+                        BorderBrush="Gainsboro"
+                        BorderThickness="1">
+                    <Grid>
+                        <Rectangle HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Stretch"
+                                   Fill="{Binding FieldColor}" />
+                        <Label HorizontalContentAlignment="Center"
                            VerticalContentAlignment="Center"
                            HorizontalAlignment="Stretch"
                            VerticalAlignment="Stretch"
-                           
-                           Height="{Binding DataContext.FieldSize, RelativeSource={RelativeSource FindAncestor,
-                                                                                      AncestorType={x:Type Grid} }}"
-                           
+
                            Content="{Binding Value}"
                            FontSize="16"
                            
                            FontWeight="Bold"
-                           Visibility="{Binding Value, Converter={StaticResource converter}}"
-                           />
-                </StackPanel>
-            </Border>
+                           Visibility="{Binding Value, Converter={StaticResource FieldValueConverter}}"/>
+                        <ContentPresenter Content="{Binding Player}"
+                                          ContentTemplate="{StaticResource TokenTemplate}"
+                                          Visibility="{Binding HasToken, Converter={StaticResource VisibilityConverter}}"/>
+                    </Grid>
+                </Border>
+            </Grid>
         </DataTemplate>
 
         <DataTemplate x:Key="BoardTemplate">
@@ -58,4 +68,18 @@
                       ItemsSource="{Binding Fields}" />
     </Grid>
 </UserControl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
