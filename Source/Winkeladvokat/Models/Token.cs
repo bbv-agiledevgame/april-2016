@@ -1,6 +1,7 @@
 ﻿namespace Winkeladvokat.Models
 {
-    public class Token
+    public abstract class Token
     {
+        public Player Player { get; set; }
     }
 }
