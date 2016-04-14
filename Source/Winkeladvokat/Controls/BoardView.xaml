@@ -30,7 +30,7 @@
                         <Grid.InputBindings>
                             <MouseBinding Command="{Binding DataContext.SelectField,
                                                             RelativeSource={RelativeSource FindAncestor,
-                                                                                           AncestorType={x:Type Grid}}}"
+                                                                                           AncestorType={x:Type UserControl}}}"
                                           CommandParameter="{Binding}"
                                           MouseAction="LeftClick" />
                         </Grid.InputBindings>

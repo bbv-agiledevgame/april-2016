@@ -1,4 +1,5 @@
-﻿using Winkeladvokat.Models;
+﻿using System.Linq;
+using Winkeladvokat.Models;
 
 namespace Winkeladvokat.Services
 {
@@ -6,11 +7,23 @@ namespace Winkeladvokat.Services
 
     public class MovementFinder
     {
-        public IMovement GetMovement(BoardField selectedField)
+        private Board board;
+
+        public MovementFinder(Board board)
+        {
+            this.board = board;
+        }
+
+        public IMovement GetMovement(BoardField selectedField, Player currentPlayer)
         {
             if (this.IsAngleMovement(selectedField))
             {
-                return new AngleMovement(selectedField);
+                var advokateTokenField = this.GetAdvokateTokenField(currentPlayer);
+                AngleMovement angleMovement = new AngleMovement(advokateTokenField);
+
+                angleMovement.SelectField(selectedField);
+
+                return angleMovement;
             }
 
             return null;
@@ -19,6 +32,14 @@ namespace Winkeladvokat.Services
         private bool IsAngleMovement(BoardField selectedField)
         {
             return selectedField.Token == null;
+        }
+
+        private BoardField GetAdvokateTokenField(Player player)
+        {
+            var playerBoardField = this.board.Fields.SelectMany(x => x)
+                .FirstOrDefault(x => x.Token != null && x.Token.GetType() == typeof(AdvocateToken) && x.Token.Player == player);
+
+            return playerBoardField;
         }
     }
 }
