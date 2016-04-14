@@ -51,10 +51,7 @@
             </ItemsControl>
         </DataTemplate>
     </UserControl.Resources>
-    <Grid Width="Auto"
-          Height="Auto"
-          Background="Black"
-          HorizontalAlignment="Center"
+    <Grid HorizontalAlignment="Center"
           VerticalAlignment="Center">
         <ItemsControl x:Name="lst" 
                       ItemTemplate="{DynamicResource BoardTemplate}"
