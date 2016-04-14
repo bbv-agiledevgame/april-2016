@@ -1,4 +1,4 @@
-﻿namespace Winkeladvokat.Models
+﻿namespace Winkeladvokat.Models2
 {
     public abstract class Token
     {
