@@ -1,47 +1,31 @@
-﻿using System.Windows.Media;
-
-namespace Winkeladvokat.Models
+﻿namespace Winkeladvokat.Models
 {
-    public class BoardField : PropertyChangedBase
-    {
-        private Player player;
+    using System.Windows;
+    using System.Windows.Media;
 
-        public BoardField(int value, Brush color, Position position)
+    public class BoardField
+    {
+        public BoardField(int value, Brush color, Point position)
         {
             this.Value = value;
             this.FieldColor = color;
             this.Position = position;
-            this.Player = null;
+        }
+
+        public static BoardField Empty
+        {
+            get { return new BoardField(0, new SolidColorBrush(Colors.Transparent), default(Point)); }
         }
 
         public int Value { get; set; }
 
         public Brush FieldColor { get; set; }
 
-        public Position Position { get; set; }
+        public Point Position { get; set; }
 
-        public Player Player
-        {
-            get
-            {
-                return this.player;
-            }
+        public Player Player { get; set; }
 
-            set
-            {
-                if (this.player != value)
-                {
-                    this.player = value;
-                    this.OnPropertyChanged(this.Player);
-                    this.OnPropertyChanged(this.Token);
-                }
-            }
-        }
-
-        public Player Token
-        {
-            get { return this.Player; }
-        }
+        public Token Token { get; set; }
 
         public bool HasToken
         {

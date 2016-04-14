@@ -1,9 +1,8 @@
-﻿using System.Windows.Media;
-
-namespace Winkeladvokat
+﻿namespace Winkeladvokat
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Windows.Media;
     using FluentAssertions;
     using Models;
     using Xunit;
@@ -16,7 +15,8 @@ namespace Winkeladvokat
             BoardBuilder testee = new BoardBuilder();
             var expectedValues = testee.BoardFieldValues;
 
-            var result = this.To2DArray(testee.CreateFields());
+            var board = testee.CreateBoard();
+            var result = this.To2DArray(board.Fields);
 
             result.Should().BeEquivalentTo(expectedValues);
         }
@@ -31,7 +31,8 @@ namespace Winkeladvokat
             BoardBuilder testee = new BoardBuilder();
             Color expectedColor = testee.PlayerColors[playerIndex];
 
-            var result = testee.CreateFields()[row][column].FieldColor.ToString();
+            var board = testee.CreateBoard();
+            var result = board.Fields[row][column].FieldColor.ToString();
 
             result.Should().Be(expectedColor.ToString());
         }

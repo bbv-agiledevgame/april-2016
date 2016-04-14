@@ -1,3 +1,5 @@
+using System.Windows;
+
 namespace Winkeladvokat
 {
     using System.Collections.Generic;
@@ -37,10 +39,19 @@ namespace Winkeladvokat
             get { return this.boardFieldValues; }
         }
 
-        public List<List<BoardField>> CreateFields()
+        public Board CreateBoard()
         {
             var fields = new List<List<BoardField>>();
 
+            this.InitializeFields(fields);
+
+            var board = new Board(fields);
+
+            return board;
+        }
+
+        private void InitializeFields(List<List<BoardField>> fields)
+        {
             var index = 0;
             for (var row = 0; row < 8; row++)
             {
@@ -48,23 +59,21 @@ namespace Winkeladvokat
 
                 for (var column = 0; column < 8; column++)
                 {
-                    Color color = GetFieldColor(index);
+                    Color color = this.GetFieldColor(index);
 
                     fields[row].Add(new BoardField(
-                                this.BoardFieldValues[row, column],
-                                new SolidColorBrush(color),
-                                new Position(row, column)));
+                        this.BoardFieldValues[row, column],
+                        new SolidColorBrush(color),
+                        new Point(row, column)));
 
                     index++;
                 }
             }
-
-            return fields;
         }
 
         private Color GetFieldColor(int index)
         {
-            var specialColors = GetPlayerStartFields();
+            var specialColors = this.GetPlayerStartFields();
             Color defaultColor = Colors.Transparent;
 
             if (specialColors.ContainsKey(index))
@@ -98,7 +107,7 @@ namespace Winkeladvokat
 
         private int GetFieldIndex(int row, int column)
         {
-            return row * boardFieldValues.GetLength(0) + column;
+            return row * this.boardFieldValues.GetLength(0) + column;
         }
     }
 }

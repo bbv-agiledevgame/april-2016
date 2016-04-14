@@ -65,17 +65,21 @@
     <Compile Include="Converter\PlayerColorConverter.cs" />
     <Compile Include="Converter\FieldValueToVisibilityConverter.cs" />
     <Compile Include="Models\AdvocateToken.cs" />
+    <Compile Include="Models\Board.cs" />
     <Compile Include="Models\BoardField.cs" />
+    <Compile Include="Movements\IMovement.cs" />
     <Compile Include="Models\ParagraphToken.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PlayerColor.cs" />
     <Compile Include="Models\Position.cs" />
     <Compile Include="Models\Token.cs" />
+    <Compile Include="Movements\AngleMovement.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\GlobalAssemblyInfo.cs" />
     <Compile Include="PropertyChangedBase.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\IDialogService.cs" />
+    <Compile Include="Services\MovementFinder.cs" />
     <Compile Include="Utils.cs" />
     <Page Include="BoardView.xaml">
       <SubType>Designer</SubType>
