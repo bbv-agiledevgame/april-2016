@@ -1,6 +1,4 @@
-﻿using System.Windows.Controls;
-
-namespace Winkeladvokat
+﻿namespace Winkeladvokat.Controls
 {
     /// <summary>
     /// Interaction logic for BoardView.xaml

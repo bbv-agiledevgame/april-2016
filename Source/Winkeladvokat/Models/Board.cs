@@ -1,7 +1,9 @@
 ﻿namespace Winkeladvokat.Models
 {
     using System.Collections.Generic;
+    using PropertyChanged;
 
+    [ImplementPropertyChanged]
     public class Board
     {
         public Board(List<List<BoardField>> fields)

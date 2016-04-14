@@ -1,8 +1,7 @@
-using System.Windows;
-
-namespace Winkeladvokat
+namespace Winkeladvokat.Services
 {
     using System.Collections.Generic;
+    using System.Windows;
     using System.Windows.Media;
     using Models;
 

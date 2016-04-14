@@ -1,15 +1,16 @@
-﻿namespace Winkeladvokat.Models
+﻿using System.Windows;
+using PropertyChanged;
+
+namespace Winkeladvokat.Models
 {
+    [ImplementPropertyChanged]
     public class Player
     {
-        public Player(Position position, PlayerColor color = PlayerColor.None)
+        public Player(Point position)
         {
             this.Position = position;
-            this.Color = color;
         }
 
-        public Position Position { get; set; }
-
-        public PlayerColor Color { get; set; }
+        public Point Position { get; set; }
     }
 }

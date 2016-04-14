@@ -1,4 +1,4 @@
-﻿namespace Winkeladvokat
+﻿namespace Winkeladvokat.Services
 {
     using System.Collections.Generic;
     using System.Linq;

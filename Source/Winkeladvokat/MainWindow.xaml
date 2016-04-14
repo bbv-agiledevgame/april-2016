@@ -4,11 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Winkeladvokat"
+        xmlns:controls="clr-namespace:Winkeladvokat.Controls"
         mc:Ignorable="d"
         Title="Winkel-Advokaten" Height="700" Width="700"
         Closing="MainWindowOnClosing">
     <Grid>
-        <local:BoardView/>
+        <controls:BoardView/>
     </Grid>
 </Window>
 

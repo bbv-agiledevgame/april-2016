@@ -1,7 +1,7 @@
-﻿namespace Winkeladvokat.Movements
-{
-    using Models;
+﻿using Winkeladvokat.Models;
 
+namespace Winkeladvokat.Movements
+{
     public class AngleMovement : IMovement
     {
         private readonly BoardField startField;
@@ -27,8 +27,8 @@
 
         private void MoveToken(BoardField field)
         {
-            field.Player = this.startField.Player;
-            this.startField.Player = null;
+            field.Token = this.startField.Token;
+            this.startField.Token = null;
         }
     }
 }

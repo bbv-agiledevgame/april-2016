@@ -71,8 +71,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoardBuilderTest.cs" />
-    <Compile Include="MovementFinderTest.cs" />
+    <Compile Include="Converter\FieldValueToVisibilityConverterTest.cs" />
+    <Compile Include="Services\BoardBuilderTest.cs" />
+    <Compile Include="Commands\ActionCommandTest.cs" />
+    <Compile Include="Services\MovementFinderTest.cs" />
     <Compile Include="Movements\AngleMovementTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\GlobalAssemblyInfo.cs" />

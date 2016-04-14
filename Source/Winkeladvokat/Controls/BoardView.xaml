@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Winkeladvokat.BoardView"
+﻿<UserControl x:Class="Winkeladvokat.Controls.BoardView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:converter="clr-namespace:Winkeladvokat.Converter"
@@ -46,7 +46,7 @@
                                FontWeight="Bold"
                                Visibility="{Binding Value,
                                                     Converter={StaticResource FieldValueConverter}}" />
-                        <ContentPresenter Content="{Binding Player}"
+                        <ContentPresenter Content="{Binding}"
                                           ContentTemplate="{StaticResource TokenTemplate}"
                                           Visibility="{Binding HasToken,
                                                                Converter={StaticResource VisibilityConverter}}" />

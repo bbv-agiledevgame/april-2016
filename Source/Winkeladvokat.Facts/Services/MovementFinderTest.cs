@@ -1,9 +1,8 @@
-﻿namespace Winkeladvokat
+﻿namespace Winkeladvokat.Services
 {
     using FluentAssertions;
     using Models;
     using Movements;
-    using Services;
     using Xunit;
 
     public class MovementFinderTest

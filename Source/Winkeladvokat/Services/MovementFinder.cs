@@ -1,6 +1,7 @@
-﻿namespace Winkeladvokat.Services
+﻿using Winkeladvokat.Models;
+
+namespace Winkeladvokat.Services
 {
-    using Models;
     using Movements;
 
     public class MovementFinder
@@ -17,7 +18,7 @@
 
         private bool IsAngleMovement(BoardField selectedField)
         {
-            return selectedField.Player == null;
+            return selectedField.Token == null;
         }
     }
 }

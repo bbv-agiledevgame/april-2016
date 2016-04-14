@@ -1,8 +1,10 @@
-﻿namespace Winkeladvokat.Models
-{
-    using System.Windows;
-    using System.Windows.Media;
+﻿using System.Windows;
+using System.Windows.Media;
+using PropertyChanged;
 
+namespace Winkeladvokat.Models
+{
+    [ImplementPropertyChanged]
     public class BoardField
     {
         public BoardField(int value, Brush color, Point position)
@@ -22,8 +24,6 @@
         public Brush FieldColor { get; set; }
 
         public Point Position { get; set; }
-
-        public Player Player { get; set; }
 
         public Token Token { get; set; }
 

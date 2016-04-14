@@ -1,7 +1,8 @@
-﻿namespace Winkeladvokat.Movements
+﻿using Winkeladvokat.Models;
+
+namespace Winkeladvokat.Movements
 {
     using FluentAssertions;
-    using Models;
     using Xunit;
 
     public class AngleMovementTest
@@ -21,25 +22,25 @@
         [Fact]
         public void SelectField_WhenFirstFieldHasBeenSelected_ThenDoNotMoveToken()
         {
-            Player token = new Player(new Position(0, 0));
+            AdvocateToken token = new AdvocateToken();
             BoardField startField = BoardField.Empty;
-            startField.Player = token;
+            startField.Token = token;
 
             BoardField selectedField = BoardField.Empty;
             AngleMovement testee = new AngleMovement(startField);
 
             testee.SelectField(selectedField);
 
-            startField.Player.Should().Be(token);
-            selectedField.Player.Should().BeNull();
+            startField.Token.Should().Be(token);
+            selectedField.Token.Should().BeNull();
         }
 
         [Fact]
         public void SelectField_WhenSecondFieldHasBeenSelected_ThenMoveTokenToSecondField()
         {
-            Player token = new Player(new Position(0, 0));
+            AdvocateToken token = new AdvocateToken();
             BoardField startField = BoardField.Empty;
-            startField.Player = token;
+            startField.Token = token;
 
             BoardField firstSelectedField = BoardField.Empty;
             BoardField secondSelectedField = BoardField.Empty;
@@ -48,9 +49,9 @@
             testee.SelectField(firstSelectedField);
             testee.SelectField(secondSelectedField);
 
-            startField.Player.Should().BeNull("start field should not have a token after angle move");
-            firstSelectedField.Player.Should().BeNull();
-            secondSelectedField.Player.Should().Be(token);
+            startField.Token.Should().BeNull("start field should not have a token after angle move");
+            firstSelectedField.Token.Should().BeNull();
+            secondSelectedField.Token.Should().Be(token);
         }
 
         [Fact]

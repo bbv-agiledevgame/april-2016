@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
-using Winkeladvokat.Models;
-
-namespace Winkeladvokat
+﻿namespace Winkeladvokat
 {
+    using System.Collections.Generic;
+    using System.Windows;
+
     public static class Utils
     {
-        public static Dictionary<int, Position> PlayerStartPositions = new Dictionary<int, Position>()
+        public static Dictionary<int, Point> PlayerStartPositions = new Dictionary<int, Point>()
         {
-            { 0, new Position(0, 0) },
-            { 1, new Position(0, 7) },
-            { 2, new Position(7, 0) },
-            { 3, new Position(7, 7) }
+            { 0, new Point(0, 0) },
+            { 1, new Point(0, 7) },
+            { 2, new Point(7, 0) },
+            { 3, new Point(7, 7) }
         };
     }
 }

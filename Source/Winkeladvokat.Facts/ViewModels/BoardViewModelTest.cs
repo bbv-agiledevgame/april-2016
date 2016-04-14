@@ -1,10 +1,8 @@
-﻿using System.Linq;
-
-namespace Winkeladvokat.ViewModels
+﻿namespace Winkeladvokat.ViewModels
 {
+    using System.Windows;
     using System.Windows.Media;
     using FluentAssertions;
-    using Models;
     using Xunit;
 
     public class BoardViewModelTest
@@ -33,10 +31,10 @@ namespace Winkeladvokat.ViewModels
         [Fact]
         public void TesteeWhenInitializedThenPlayersShouldHaveCorrectStartPosition()
         {
-            var positionPlayer1 = new Position(0, 0);
-            var positionPlayer2 = new Position(0, 7);
-            var positionPlayer3 = new Position(7, 0);
-            var positionPlayer4 = new Position(7, 7);
+            var positionPlayer1 = new Point(0, 0);
+            var positionPlayer2 = new Point(0, 7);
+            var positionPlayer3 = new Point(7, 0);
+            var positionPlayer4 = new Point(7, 7);
 
             this.testee.Players[0].Position.X.Should().Be(positionPlayer1.X);
             this.testee.Players[0].Position.Y.Should().Be(positionPlayer1.Y);
@@ -49,62 +47,6 @@ namespace Winkeladvokat.ViewModels
 
             this.testee.Players[3].Position.X.Should().Be(positionPlayer4.X);
             this.testee.Players[3].Position.Y.Should().Be(positionPlayer4.Y);
-        }
-
-        [Fact]
-        public void EndTurnShouldGiveTurnToNextPlayer()
-        {
-            const int indexOfNextPlayer = 1;
-
-            this.testee.EndTurn();
-
-            this.testee.Players.IndexOf(this.testee.CurrentPlayer).Should().Be(indexOfNextPlayer);
-        }
-
-        [Fact]
-        public void EndTurnWhenLastPlayerEndedTurnShouldGiveTurnToFirstPlayerAgain()
-        {
-            this.testee.CurrentPlayer = this.testee.Players[3];
-            const int indexOfCurrentPlayer = 0;
-
-            this.testee.EndTurn();
-
-            this.testee.Players.IndexOf(this.testee.CurrentPlayer).Should().Be(indexOfCurrentPlayer);
-        }
-
-        [Fact]
-        public void MakeTurnShouldMovePlayerToNewPosition()
-        {
-            var newPosition = new Position(2, 4);
-            var newPositionTwo = new Position(5, 6);
-            const int indexOfPlayerMakingTurn = 0;
-            const int indexOfNextPlayer = 1;
-
-            this.testee.MakeTurn(newPosition);
-            this.testee.MakeTurn(newPositionTwo);
-
-            this.testee.Players[indexOfPlayerMakingTurn].Position.X.Should().Be(newPositionTwo.X);
-            this.testee.Players[indexOfPlayerMakingTurn].Position.Y.Should().Be(newPositionTwo.Y);
-            this.testee.Players.IndexOf(this.testee.CurrentPlayer).Should().Be(indexOfNextPlayer);
-            this.testee.Fields[5][6].Player.ShouldBeEquivalentTo(this.testee.Players[indexOfPlayerMakingTurn]);
-        }
-
-        [Fact]
-        public void TesteeWhenInitializedThenBoardShouldHaveCorrectNumberOfFlatFields()
-        {
-            this.testee.FlatFields.Count.Should().Be(64);
-        }
-
-        [Fact]
-        public void TesteeWhenInitializedThenBoardShouldHavePlayerInEachCorner()
-        {
-            this.testee.FlatFields.Count(x => x.HasToken).Should().Be(4);
-        }
-
-        [Fact]
-        public void TesteeWhenInitializedThenBoardShouldHaveNoPlayerOtherFieldsThanCorner()
-        {
-            this.testee.FlatFields.Count(x => !x.HasToken).Should().Be(60);
         }
     }
 }
