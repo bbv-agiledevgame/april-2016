@@ -2,8 +2,10 @@
 
 namespace Winkeladvokat.Models
 {
-    public class BoardField
+    public class BoardField : PropertyChangedBase
     {
+        private Player player;
+
         public BoardField(int value, Brush color, Position position)
         {
             this.Value = value;
@@ -18,7 +20,23 @@ namespace Winkeladvokat.Models
 
         public Position Position { get; set; }
 
-        public Player Player { get; set; }
+        public Player Player
+        {
+            get
+            {
+                return this.player;
+            }
+
+            set
+            {
+                if (this.player != value)
+                {
+                    this.player = value;
+                    this.OnPropertyChanged(this.Player);
+                    this.OnPropertyChanged(this.Token);
+                }
+            }
+        }
 
         public Player Token
         {
