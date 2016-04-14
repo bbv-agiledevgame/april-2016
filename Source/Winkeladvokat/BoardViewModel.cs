@@ -96,18 +96,19 @@
         private void InitializeTokens()
         {
             List<Position> corners = Utils.PlayerStartPositions.Select(x => x.Value).ToList();
-            foreach (var cornerPosition in corners)
+            for (int i = 0; i < corners.Count; i++)
             {
                 BoardField field = this.FlatFields.FirstOrDefault(
-                    f => f.Position.X == cornerPosition.X &&
-                    f.Position.Y == cornerPosition.Y);
+                    f => f.Position.X == corners[i].X &&
+                    f.Position.Y == corners[i].Y);
 
                 if (field == null)
                 {
                     throw new Exception("Field must not be null!");
                 }
 
-                field.Player = new Player(cornerPosition);
+                var player = (PlayerColor)(i + 1);
+                field.Player = new Player(corners[i], player);
             }
         }
 

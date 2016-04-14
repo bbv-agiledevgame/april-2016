@@ -13,24 +13,21 @@
     </UserControl.DataContext>
     <UserControl.Resources>
         <converter:FieldValueToVisibilityConverter x:Key="FieldValueConverter" />
+        <converter:PlayerColorConverter x:Key="ColorConverter" />
         <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
-        <!--<Style x:Key="PlayerStyle" TargetType="Ellipse">
-            <Setter Property="Fill" Value="{Binding Color, Converter}" />
-            <Setter Property="Stroke" Value="Black" />
+        <Style x:Key="TokenSizeStyle" TargetType="Ellipse" >
             <Setter Property="Margin" Value="3" />
         </Style>
-        <Style x:Key="AdvokatTokenPlayer1Style" TargetType="Ellipse" BasedOn="PlayerStyle">
-            <Setter Property="Fill" Value="Orange" />
-            <Setter Property="Stroke" Value="Black" />
-            <Setter Property="Margin" Value="3" />
-        </Style>-->
+        <Style x:Key="PlayerStyle" TargetType="Ellipse" BasedOn="{StaticResource TokenSizeStyle}">
+            <Setter Property="Fill" Value="{Binding Color, Converter={StaticResource ColorConverter}}" />
+        </Style>
+
         <DataTemplate x:Key="TokenTemplate">
             <Grid>
                 <Ellipse Margin="3"
-                         Fill="Cyan"
                          Stroke="Black"
                          StrokeThickness="5"
-                         />
+                         Style="{StaticResource PlayerStyle}"/>
             </Grid>
         </DataTemplate>
 
