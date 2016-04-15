@@ -66,11 +66,52 @@
         </DataTemplate>
     </UserControl.Resources>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
         <ItemsControl x:Name="lst"
                       ItemTemplate="{DynamicResource BoardTemplate}"
-                      ItemsSource="{Binding Fields}" />
+                      ItemsSource="{Binding Fields}"
+                      Grid.Column="0"/>
+        <StackPanel Margin="20" Grid.Column="1" Orientation="Vertical">
+            <Label FontSize="24">Scores</Label>
+            <StackPanel Orientation="Horizontal">
+                <Label >Player 1</Label>
+                <Label Content="{Binding Players[0].Score}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label >Player 2</Label>
+                <Label Content="{Binding Players[1].Score}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label >Player 3</Label>
+                <Label Content="{Binding Players[2].Score}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label >Player 4</Label>
+                <Label Content="{Binding Players[3].Score}" />
+            </StackPanel>
+        </StackPanel>
+            
     </Grid>
 </UserControl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
