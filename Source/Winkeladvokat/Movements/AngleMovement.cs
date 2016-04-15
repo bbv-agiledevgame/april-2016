@@ -1,6 +1,6 @@
 ﻿namespace Winkeladvokat.Movements
 {
-    using Winkeladvokat.Models;
+    using Models;
 
     public class AngleMovement : IMovement
     {

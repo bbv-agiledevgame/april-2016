@@ -1,48 +1,57 @@
 ﻿namespace Winkeladvokat.Movements
 {
+    using System.Collections.Generic;
+    using System.Windows.Media;
     using FluentAssertions;
     using Models;
     using Xunit;
 
     public class ParagraphMovementTest
     {
+        private readonly Board board;
+        private readonly BoardField startField;
+        private readonly ParagraphMovement testee;
+        private readonly Token playerToken;
+        private readonly Player player;
+
+        public ParagraphMovementTest()
+        {
+            this.board = this.CreateBoard();
+            this.player = new Player(Colors.Transparent);
+            this.playerToken = new Token(TokenType.Paragraph, this.player);
+            this.startField = this.board.Fields[1][1];
+            this.startField.Token = this.playerToken;
+            this.testee = new ParagraphMovement(this.board, this.startField);
+        }
+
         [Fact]
         public void SelectField_WhenDestinationFieldIsInSameRow_ThenMoveParagraphToken()
         {
-            ParagraphToken token = new ParagraphToken(null);
-            BoardField startField = new BoardField(new Position(1, 1)) {Token = token};
-            BoardField selectedField = new BoardField(new Position(3, 1));
-            ParagraphMovement testee = new ParagraphMovement(startField);
+            BoardField selectedField = this.board.Fields[3][1];
 
-            testee.SelectField(selectedField);
+            this.testee.SelectField(selectedField);
 
-            startField.Token.Should().BeNull();
-            selectedField.Token.Should().Be(token);
+            this.startField.Token.Should().BeNull();
+            selectedField.Token.Should().Be(this.playerToken);
         }
 
         [Fact]
         public void SelectField_WhenDestinationFieldIsInSameColumn_ThenMoveParagraphToken()
         {
-            ParagraphToken token = new ParagraphToken(null);
-            BoardField startField = new BoardField(new Position(1, 1)) {Token = token};
-            BoardField selectedField = new BoardField(new Position(1, 3));
-            ParagraphMovement testee = new ParagraphMovement(startField);
+            BoardField selectedField = this.board.Fields[1][3];
 
-            testee.SelectField(selectedField);
+            this.testee.SelectField(selectedField);
 
-            startField.Token.Should().BeNull();
-            selectedField.Token.Should().Be(token);
+            this.startField.Token.Should().BeNull();
+            selectedField.Token.Should().Be(this.playerToken);
         }
 
         [Fact]
         public void SelectField_WhenDestinationFieldIsInSameRowOrColumn_ThenMoveIsFinished()
         {
-            ParagraphToken token = new ParagraphToken(null);
-            BoardField startField = new BoardField(new Position(1, 1)) {Token = token};
-            BoardField selectedField = new BoardField(new Position(1, 3));
-            ParagraphMovement testee = new ParagraphMovement(startField);
+            BoardField selectedField = this.board.Fields[1][3];
 
-            var result = testee.SelectField(selectedField);
+            var result = this.testee.SelectField(selectedField);
 
             result.Should().BeTrue();
         }
@@ -50,12 +59,9 @@
         [Fact]
         public void SelectField_WhenDestinationFieldIsNotInSameRowOrColumn_ThenMoveIsNotFinished()
         {
-            ParagraphToken token = new ParagraphToken(null);
-            BoardField startField = new BoardField(new Position(1, 1)) {Token = token};
-            BoardField selectedField = new BoardField(new Position(3, 3));
-            ParagraphMovement testee = new ParagraphMovement(startField);
+            BoardField selectedField = this.board.Fields[3][3];
 
-            var result = testee.SelectField(selectedField);
+            var result = this.testee.SelectField(selectedField);
 
             result.Should().BeFalse();
         }
@@ -63,44 +69,70 @@
         [Fact]
         public void SelectField_WhenDestinationFieldIsNotInSameRowOrColumn_ThenDoNotMoveParagraphToken()
         {
-            ParagraphToken token = new ParagraphToken(null);
-            BoardField startField = new BoardField(new Position(1, 1)) {Token = token};
-            BoardField selectedField = new BoardField(new Position(3, 3));
-            ParagraphMovement testee = new ParagraphMovement(startField);
+            BoardField selectedField = this.board.Fields[3][3];
 
-            testee.SelectField(selectedField);
+            this.testee.SelectField(selectedField);
 
-            startField.Token.Should().Be(token);
+            this.startField.Token.Should().Be(this.playerToken);
             selectedField.Token.Should().BeNull();
         }
 
         [Fact]
         public void SelectField_WhenDestinationFieldHasAlreadyAToken_ThenDoNotMoveParagraphToken()
         {
-            ParagraphToken playerToken = new ParagraphToken(null);
-            ParagraphToken occupyToken = new ParagraphToken(null);
-            BoardField startField = new BoardField(new Position(1, 1)) {Token = playerToken};
-            BoardField selectedField = new BoardField(new Position(3, 3)) {Token = occupyToken};
-            ParagraphMovement testee = new ParagraphMovement(startField);
+            Token occupyToken = new Token(TokenType.Paragraph);
+            BoardField selectedField = this.board.Fields[1][3];
+            selectedField.Token = occupyToken;
 
-            testee.SelectField(selectedField);
+            this.testee.SelectField(selectedField);
 
-            startField.Token.Should().Be(playerToken);
+            this.startField.Token.Should().Be(this.playerToken);
             selectedField.Token.Should().Be(occupyToken);
         }
 
         [Fact]
         public void SelectField_WhenDestinationFieldHasAlreadyAToken_ThenMoveIsNotFinished()
         {
-            ParagraphToken playerToken = new ParagraphToken(null);
-            ParagraphToken occupyToken = new ParagraphToken(null);
-            BoardField startField = new BoardField(new Position(1, 1)) { Token = playerToken };
-            BoardField selectedField = new BoardField(new Position(3, 3)) { Token = occupyToken };
-            ParagraphMovement testee = new ParagraphMovement(startField);
+            Token occupyToken = new Token(TokenType.Paragraph);
+            BoardField selectedField = this.board.Fields[1][3];
+            selectedField.Token = occupyToken;
 
-            var result = testee.SelectField(selectedField);
+
+            var result = this.testee.SelectField(selectedField);
 
             result.Should().BeFalse();
+        }
+
+        [Fact]
+        public void SelectField_WhenEnemyParagraphTokenIsBetweenStartAndDestinationField_ThenRemoveEnemyParagraphToken()
+        {
+            Player enemyPlayer = new Player(Colors.Transparent);
+            Token enemyToken = new Token(TokenType.Paragraph, enemyPlayer);
+            BoardField enemyField = this.board.Fields[1][2];
+            enemyField.Token = enemyToken;
+            BoardField selectedField = new BoardField(new Position(1, 3));
+
+            this.testee.SelectField(selectedField);
+
+            enemyField.Token.Should().BeNull();
+        }
+
+        private Board CreateBoard()
+        {
+            List<List<BoardField>> fields = new List<List<BoardField>>();
+
+            for (int row = 0; row < 8; row++)
+            {
+                List<BoardField> rowFields = new List<BoardField>();
+                for (int column = 0; column < 8; column++)
+                {
+                    rowFields.Add(new BoardField(new Position(column, row)));
+                }
+
+                fields.Add(rowFields);
+            }
+
+            return new Board(fields);
         }
     }
 }

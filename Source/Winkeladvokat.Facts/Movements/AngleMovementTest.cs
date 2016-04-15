@@ -1,9 +1,8 @@
-﻿using System.Windows.Media;
-using Winkeladvokat.Models;
-
-namespace Winkeladvokat.Movements
+﻿namespace Winkeladvokat.Movements
 {
+    using System.Windows.Media;
     using FluentAssertions;
+    using Models;
     using Xunit;
 
     public class AngleMovementTest

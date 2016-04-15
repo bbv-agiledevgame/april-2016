@@ -1,13 +1,12 @@
-﻿using System.Linq;
-using Winkeladvokat.Models;
-
-namespace Winkeladvokat.Services
+﻿namespace Winkeladvokat.Services
 {
+    using System.Linq;
+    using Models;
     using Movements;
 
     public class MovementFinder
     {
-        private Board board;
+        private readonly Board board;
 
         public MovementFinder(Board board)
         {
@@ -27,7 +26,7 @@ namespace Winkeladvokat.Services
             }
             else if(this.IsParagraphMovement(selectedField))
             {
-                ParagraphMovement paragraphMovement = new ParagraphMovement(selectedField);
+                ParagraphMovement paragraphMovement = new ParagraphMovement(this.board, selectedField);
 
                 return paragraphMovement;
             }
