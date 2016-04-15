@@ -1,10 +1,10 @@
-﻿using FluentAssertions;
-using Winkeladvokat.Models;
-using Winkeladvokat.ViewModels;
-using Xbehave;
-
-namespace Winkeladvokat
+﻿namespace Winkeladvokat
 {
+    using FluentAssertions;
+    using Models;
+    using ViewModels;
+    using Xbehave;
+
     public class AngleMove
     {
         [Scenario]

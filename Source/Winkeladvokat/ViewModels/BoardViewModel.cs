@@ -1,33 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO.Ports;
-using System.Linq;
-using System.Windows;
-using System.Windows.Input;
-using PropertyChanged;
-using Winkeladvokat.Commands;
-using Winkeladvokat.Models;
-using Winkeladvokat.Movements;
-using Winkeladvokat.Services;
-
-namespace Winkeladvokat.ViewModels
+﻿namespace Winkeladvokat.ViewModels
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Windows.Input;
+    using System.Windows.Media;
+    using Commands;
+    using Models;
+    using Movements;
+    using PropertyChanged;
+    using Services;
+
     [ImplementPropertyChanged]
     public class BoardViewModel
     {
         private readonly Board board;
         private readonly MovementFinder movementFinder;
+        private readonly Color[] playerColors = { Colors.Red, Colors.Green, Colors.Blue, Colors.Yellow };
+
         private IMovement currentMovement;
-        private BoardBuilder boardBuilder;
 
         public BoardViewModel()
         {
-            this.boardBuilder = new BoardBuilder();
-            this.board = boardBuilder.CreateBoard();
-            this.movementFinder = new MovementFinder(this.board);
             this.Players = this.InitializePlayers();
-            this.InitializeTokens();
             this.CurrentPlayer = this.Players[0];
+
+            BoardBuilder boardBuilder = new BoardBuilder();
+            this.board = boardBuilder.CreateBoard(this.Players);
+            this.movementFinder = new MovementFinder(this.board);
+
             this.FieldSize = 50;
         }
 
@@ -43,10 +43,7 @@ namespace Winkeladvokat.ViewModels
         {
             get
             {
-                Action<BoardField> act = this.DoMovement;
-                Func<BoardField, bool> canExecuteFunc = x => true;
-
-                return new ActionCommand<BoardField>(act, canExecuteFunc);
+                return new ActionCommand<BoardField>(DoMovement, x => true);
             }
         }
 
@@ -70,28 +67,9 @@ namespace Winkeladvokat.ViewModels
 
         private List<Player> InitializePlayers()
         {
-            var playersList = Utils.PlayerStartPositions.Select(pair => new Player(pair.Value, this.boardBuilder.PlayerColors[pair.Key])).ToList();
-            return playersList;
-        }
+            var players = Enumerable.Range(0, 4).Select(x => new Player(this.playerColors[x])).ToList();
 
-        private void InitializeTokens()
-        {
-            List<Models.Position> corners = Utils.PlayerStartPositions.Select(x => x.Value).ToList();
-            int index = 0;
-            foreach (var cornerPosition in corners)
-            {
-                BoardField field = this.Fields[cornerPosition.Y][cornerPosition.X];
-
-                if (field == null)
-                {
-                    throw new Exception("Field must not be null!");
-                }
-
-                field.Token = new AdvocateToken()
-                {
-                    Player = this.Players[index++]
-                };
-            }
+            return players;
         }
     }
 }
