@@ -40,7 +40,7 @@ namespace Winkeladvokat.Services
             this.InitializeFields(fields);
             var enumerable = players as IList<Player> ?? players.ToList();
             this.InitializeStartFields(fields, enumerable);
-            var board = new Board(fields, enumerable.Count);
+            var board = new Board(fields);
 
             return board;
         }
