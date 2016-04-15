@@ -37,7 +37,7 @@ namespace Winkeladvokat.Services
         private BoardField GetAdvokateTokenField(Player player)
         {
             var playerBoardField = this.board.Fields.SelectMany(x => x)
-                .FirstOrDefault(x => x.Token != null && x.Token.GetType() == typeof(AdvocateToken) && x.Token.Player == player);
+                .FirstOrDefault(x => x.Token != null && x.Token.Type == TokenType.Advocate && x.Token.Player == player);
 
             return playerBoardField;
         }

@@ -21,14 +21,14 @@ namespace Winkeladvokat.Models
             this.Type = TokenType.Advocate;
         }
 
-        protected Token(Player player) : this()
-        {
-            this.Player = player;
-        }
-
-        public Token(Player player, TokenType type) : this(player)
+        public Token(TokenType type) : this()
         {
             this.Type = type;
+        }
+
+        public Token(TokenType type, Player player) : this(type)
+        {
+            this.Player = player;
         }
     }
 

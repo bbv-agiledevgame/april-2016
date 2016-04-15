@@ -15,7 +15,7 @@
             Player player = new Player(Colors.Transparent);
             BoardField selectedField = BoardField.Empty;
             BoardField playerField = BoardField.Empty;
-            playerField.Token = new AdvocateToken(player);
+            playerField.Token = new Token(TokenType.Advocate, player);
             Board board = new Board(new List<List<BoardField>>(new[] { new List<BoardField> { selectedField, playerField } }));
             MovementFinder testee = new MovementFinder(board);
 

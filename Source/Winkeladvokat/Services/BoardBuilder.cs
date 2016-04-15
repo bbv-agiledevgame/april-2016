@@ -63,7 +63,7 @@ namespace Winkeladvokat.Services
 
                 BoardField startField = fields[row][column];
                 startField.FieldColor = new SolidColorBrush(player.Color);
-                startField.Token = new AdvocateToken(player);
+                startField.Token = new Token(TokenType.Advocate, player);
 
                 index++;
             }

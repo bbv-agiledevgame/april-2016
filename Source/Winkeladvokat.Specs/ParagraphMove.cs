@@ -17,8 +17,8 @@ namespace Winkeladvokat
 
             "establish two paragraph tokens of different players"._(() =>
             {
-                boardViewModel.Fields[1][1].Token = new ParagraphToken(boardViewModel.Players[0]);
-                boardViewModel.Fields[1][2].Token = new ParagraphToken(boardViewModel.Players[1]);
+                boardViewModel.Fields[1][1].Token = new Token(TokenType.Paragraph, boardViewModel.Players[0]);
+                boardViewModel.Fields[1][2].Token = new Token(TokenType.Paragraph, boardViewModel.Players[1]);
             });
 
             "when first player does a paragraph move"._(() =>
@@ -29,7 +29,7 @@ namespace Winkeladvokat
 
             "it shhould have moved the paragraph token to the destination field"._(() =>
             {
-                boardViewModel.Fields[1][3].Token.Should().BeOfType<ParagraphToken>();
+                boardViewModel.Fields[1][3].Token.Type.Should().Be(TokenType.Paragraph);
                 boardViewModel.Fields[1][3].Token.Player.Should().Be(boardViewModel.Players[0]);
             });
 

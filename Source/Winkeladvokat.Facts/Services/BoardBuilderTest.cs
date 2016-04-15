@@ -53,7 +53,7 @@
             var board = testee.CreateBoard(players);
             var result = board.Fields[row][column].Token;
 
-            result.Should().BeOfType<AdvocateToken>();
+            result.Type.Should().Be(TokenType.Advocate);
             result.Player.Should().Be(expectedPlayer);
         }
 
