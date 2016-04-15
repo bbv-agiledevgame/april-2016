@@ -42,12 +42,9 @@
             int max = source.Select(l => l).Max(l => l.Count);
             var result = new int[source.Count, max];
 
-            for (int row = 0; row < source.Count; row++)
+            foreach (var field in source.SelectMany(field => field))
             {
-                for (int column = 0; column < source[row].Count(); column++)
-                {
-                    result[row, column] = source[row][column].Value;
-                }
+                result[field.Position.X, field.Position.Y] = field.Value;
             }
 
             return result;
