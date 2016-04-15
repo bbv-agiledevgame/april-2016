@@ -12,7 +12,7 @@ namespace Winkeladvokat.Movements
         public void SelectField_WhenFirstFieldHasBeenSelected_ThenMovementIsNotFinished()
         {
             BoardField startField = BoardField.Empty;
-            Player player = new Player(new Position(2, 3), Colors.Red);
+            Player player = new Player(Colors.Red);
             startField.Token = new AdvocateToken(player);
             BoardField selectedField = BoardField.Empty;
             AngleMovement testee = new AngleMovement(startField);
@@ -56,7 +56,7 @@ namespace Winkeladvokat.Movements
         [Fact]
         public void SelectField_WhenFirstFieldHasBeenSelected_ThenParagraphTokenShoulBeFromCorrectPlayer()
         {
-            Player player = new Player(new Position(0, 0), Colors.Red);
+            Player player = new Player(Colors.Red);
             AdvocateToken token = new AdvocateToken(player);
             BoardField startField = BoardField.Empty;
             startField.Token = token;
@@ -92,7 +92,7 @@ namespace Winkeladvokat.Movements
         public void SelectField_WhenSecondFieldHasBeenSelected_ThenMovementIsFinished()
         {
             BoardField startField = BoardField.Empty;
-            Player player = new Player(new Position(2, 3), Colors.Red);
+            Player player = new Player(Colors.Red);
             startField.Token = new AdvocateToken(player);
             BoardField firstSelectedField = BoardField.Empty;
             BoardField secondSelectedField = BoardField.Empty;

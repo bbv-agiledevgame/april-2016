@@ -9,7 +9,5 @@ namespace Winkeladvokat.Models
         {
             this.Player = player;
         }
-            this.Player = player;
-        }
     }
 }
