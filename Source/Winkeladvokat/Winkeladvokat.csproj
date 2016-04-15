@@ -83,7 +83,6 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\MovementFinder.cs" />
-    <Compile Include="Utils.cs" />
     <Page Include="Controls\BoardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
