@@ -6,6 +6,11 @@ namespace Winkeladvokat.Models
     [ImplementPropertyChanged]
     public class BoardField
     {
+        public BoardField(Position position)
+        {
+            this.Position = position;
+        }
+
         public BoardField(int value, Brush color, Position position)
         {
             this.Value = value;
