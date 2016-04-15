@@ -9,9 +9,8 @@ namespace Winkeladvokat.Models
         {
         }
 
-        public AdvocateToken(Player player)
-        {
-            this.Player = player;
-        }
+        public AdvocateToken(Player player) 
+            : base(player)
+        {}
     }
 }
