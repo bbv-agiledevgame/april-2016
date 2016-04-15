@@ -79,6 +79,7 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\GlobalAssemblyInfo.cs" />
     <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\GameOverDetector.cs" />
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\MovementFinder.cs" />
     <Page Include="Controls\BoardView.xaml">

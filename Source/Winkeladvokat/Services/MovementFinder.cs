@@ -24,7 +24,8 @@
 
                 return angleMovement;
             }
-            else if(this.IsParagraphMovement(selectedField))
+
+            if (this.IsParagraphMovement(selectedField, currentPlayer))
             {
                 ParagraphMovement paragraphMovement = new ParagraphMovement(this.board, selectedField);
 
@@ -39,9 +40,11 @@
             return selectedField.Token == null;
         }
 
-        private bool IsParagraphMovement(BoardField selectedField)
+        private bool IsParagraphMovement(BoardField selectedField, Player currentPlayer)
         {
-            return selectedField.Token != null;
+            return selectedField.Token != null &&
+                    selectedField.Token.Type == TokenType.Paragraph &&
+                    selectedField.Token.Player == currentPlayer;
         }
 
         private BoardField GetAdvokateTokenField(Player player)

@@ -17,6 +17,8 @@
         private readonly MovementFinder movementFinder;
         private readonly Color[] playerColors = { Colors.Cyan, Colors.Magenta, Colors.Blue, Colors.Yellow };
         private readonly ScoreCalculator scoreCalculator;
+        private readonly GameOverDetector gameOverDetector;
+        private readonly IDialogService dialogService;
 
         private IMovement currentMovement;
 
@@ -25,6 +27,8 @@
             this.Players = this.InitializePlayers();
             this.CurrentPlayer = this.Players[0];
             this.scoreCalculator = new ScoreCalculator();
+            this.gameOverDetector = new GameOverDetector();
+            this.dialogService = new DialogService();
 
             BoardBuilder boardBuilder = new BoardBuilder();
             this.board = boardBuilder.CreateBoard(this.Players);
@@ -45,7 +49,7 @@
         {
             get
             {
-                return new ActionCommand<BoardField>(DoMovement, x => true);
+                return new ActionCommand<BoardField>(this.DoMovement, x => true);
             }
         }
 
@@ -66,6 +70,11 @@
                     this.CurrentPlayer = this.Players[(this.Players.IndexOf(this.CurrentPlayer) + 1) % this.Players.Count];
                     this.CurrentPlayer.IsCurrent = true;
                     this.GetPlayerScores();
+
+                    if (this.gameOverDetector.IsGameOver(this.board, this.CurrentPlayer))
+                    {
+                        this.dialogService.ShowGameOver();
+                    }
                 }
             }
         }

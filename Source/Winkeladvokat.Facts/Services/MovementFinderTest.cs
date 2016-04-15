@@ -39,5 +39,21 @@
 
             result.Should().BeOfType<ParagraphMovement>();
         }
+
+        [Fact]
+        public void GetMovement_WhenSelectingEnemyParagraphTokenField_ThenReturnNullMovement()
+        {
+            Player player = new Player(Colors.Transparent);
+            Player enemyPlayer = new Player(Colors.Transparent);
+            BoardField selectedField = new BoardField(0, default(Brush), new Position(1, 1));
+            selectedField.Token = new Token(TokenType.Paragraph, enemyPlayer);
+
+            Board board = new Board(new List<List<BoardField>>(new[] { new List<BoardField> { selectedField } }));
+            MovementFinder testee = new MovementFinder(board);
+
+            var result = testee.GetMovement(selectedField, player);
+
+            result.Should().BeNull();
+        }
     }
 }

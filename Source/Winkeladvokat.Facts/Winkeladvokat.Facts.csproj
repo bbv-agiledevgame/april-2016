@@ -75,6 +75,7 @@
     <Compile Include="Movements\ParagraphMovementTest.cs" />
     <Compile Include="Services\BoardBuilderTest.cs" />
     <Compile Include="Commands\ActionCommandTest.cs" />
+    <Compile Include="Services\GameOverDetectorTest.cs" />
     <Compile Include="Services\MovementFinderTest.cs" />
     <Compile Include="Movements\AngleMovementTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
