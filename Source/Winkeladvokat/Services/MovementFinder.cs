@@ -25,6 +25,12 @@ namespace Winkeladvokat.Services
 
                 return angleMovement;
             }
+            else if(this.IsParagraphMovement(selectedField))
+            {
+                ParagraphMovement paragraphMovement = new ParagraphMovement(selectedField);
+
+                return paragraphMovement;
+            }
 
             return null;
         }
@@ -32,6 +38,11 @@ namespace Winkeladvokat.Services
         private bool IsAngleMovement(BoardField selectedField)
         {
             return selectedField.Token == null;
+        }
+
+        private bool IsParagraphMovement(BoardField selectedField)
+        {
+            return selectedField.Token != null;
         }
 
         private BoardField GetAdvokateTokenField(Player player)
