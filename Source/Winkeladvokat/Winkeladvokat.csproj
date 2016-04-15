@@ -66,6 +66,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Position.cs" />
+    <Compile Include="Movements\ParagraphMovement.cs" />
     <Compile Include="Services\BoardBuilder.cs" />
     <Compile Include="Commands\ActionCommand.cs" />
     <Compile Include="Converter\FieldValueToVisibilityConverter.cs" />
