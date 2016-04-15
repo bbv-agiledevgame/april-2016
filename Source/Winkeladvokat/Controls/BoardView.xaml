@@ -18,7 +18,7 @@
             <Ellipse Margin="{Binding Token.Margin}"
                      Fill="{Binding Token.Player.FillBrush}"
                      Stroke="Black"
-                     StrokeThickness="5" />
+                     StrokeThickness="{Binding Token.BorderThickness}" />
         </DataTemplate>
 
         <DataTemplate x:Key="FieldItem">
