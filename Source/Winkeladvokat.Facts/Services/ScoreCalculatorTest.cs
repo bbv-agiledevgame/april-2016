@@ -24,9 +24,9 @@ namespace Winkeladvokat.Services
         [Fact]
         public void GetPlayerScore_WhenFirstPlayerPassed_ShouldReturnScoreOfFirstPlayer()
         {
-            this.board.Fields[0][2].Token = new ParagraphToken(this.players[0]);
-            this.board.Fields[2][2].Token = new ParagraphToken(this.players[0]);
-            this.board.Fields[3][3].Token = new ParagraphToken(this.players[0]);
+            this.board.Fields[0][2].Token = new Token(TokenType.Paragraph, this.players[0]);
+            this.board.Fields[2][2].Token = new Token(TokenType.Paragraph, this.players[0]);
+            this.board.Fields[3][3].Token = new Token(TokenType.Paragraph, this.players[0]);
 
             this.players[0].Score = this.testee.GetPlayerScore(this.players[0], this.board);
 

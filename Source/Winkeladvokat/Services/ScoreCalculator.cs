@@ -13,7 +13,7 @@ namespace Winkeladvokat.Services
         {
             var playerParagraphTokenFields =
                 board.Fields.SelectMany(row => row)
-                    .Where(field => field.Token != null && field.Token.GetType() == typeof(ParagraphToken) && field.Token.Player == player).ToList();
+                    .Where(field => field.Token != null && field.Token.Type == TokenType.Paragraph && field.Token.Player == player).ToList();
             return playerParagraphTokenFields.Sum(field => field.Value);
         }
     }
