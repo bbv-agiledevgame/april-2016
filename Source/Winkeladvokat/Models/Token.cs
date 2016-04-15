@@ -17,13 +17,17 @@ namespace Winkeladvokat.Models
 
         public int Margin => this.GetMarginFromType(this.Type);
 
-        protected Token()
+        public bool IsCurrentToken
         {
-            this.Player = null;
-            this.Type = TokenType.Advocate;
+            get { return this.Player.IsCurrent && this.Type == TokenType.Advocate; }
         }
 
-        public Token(TokenType type) : this()
+        public int BorderThickness
+        {
+            get { return this.IsCurrentToken ? 10 : 5; }
+        }
+
+        public Token(TokenType type)
         {
             this.Type = type;
         }
