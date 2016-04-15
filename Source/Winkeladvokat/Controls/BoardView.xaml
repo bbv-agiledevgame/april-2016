@@ -64,36 +64,38 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </DataTemplate>
+
+        <DataTemplate x:Key="ScoreListTemplate">
+            <StackPanel Orientation="Horizontal">
+                <Ellipse Height="20"
+                     Width="20"
+                     Fill="{Binding FillBrush}"
+                     Stroke="Black"
+                     StrokeThickness="2" />
+                <Label FontSize="18" Content="{Binding Score}" VerticalAlignment="Center" />
+            </StackPanel>
+        </DataTemplate>
+
     </UserControl.Resources>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <ItemsControl x:Name="lst"
+        <ItemsControl x:Name="BoardField"
                       ItemTemplate="{DynamicResource BoardTemplate}"
                       ItemsSource="{Binding Fields}"
                       Grid.Column="0"/>
         <StackPanel Margin="20" Grid.Column="1" Orientation="Vertical">
             <Label FontSize="24">Scores</Label>
-            <StackPanel Orientation="Horizontal">
-                <Label >Player 1</Label>
-                <Label Content="{Binding Players[0].Score}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label >Player 2</Label>
-                <Label Content="{Binding Players[1].Score}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label >Player 3</Label>
-                <Label Content="{Binding Players[2].Score}" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <Label >Player 4</Label>
-                <Label Content="{Binding Players[3].Score}" />
-            </StackPanel>
+            <ItemsControl x:Name="ScoreList"
+                      ItemTemplate="{DynamicResource ScoreListTemplate}"
+                      ItemsSource="{Binding Players}"
+                      Grid.Column="1"/>
         </StackPanel>
-            
+
+
+
     </Grid>
 </UserControl>
 

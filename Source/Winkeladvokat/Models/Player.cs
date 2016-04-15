@@ -13,10 +13,7 @@
 
         public Color Color { get; set; }
 
-        public Brush FillBrush
-        {
-            get { return new SolidColorBrush(this.Color); }
-        }
+        public Brush FillBrush => new SolidColorBrush(this.Color);
 
         public int Score { get; set; }
     }
