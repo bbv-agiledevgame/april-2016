@@ -31,10 +31,10 @@
         [Fact]
         public void TesteeWhenInitializedThenPlayersShouldHaveCorrectStartPosition()
         {
-            var positionPlayer1 = new Point(0, 0);
-            var positionPlayer2 = new Point(7, 7);
-            var positionPlayer3 = new Point(7, 0);
-            var positionPlayer4 = new Point(0, 7);
+            var positionPlayer1 = new Models.Position(0, 0);
+            var positionPlayer2 = new Models.Position(7, 7);
+            var positionPlayer3 = new Models.Position(7, 0);
+            var positionPlayer4 = new Models.Position(0, 7);
 
             this.testee.Players[0].Position.X.Should().Be(positionPlayer1.X);
             this.testee.Players[0].Position.Y.Should().Be(positionPlayer1.Y);

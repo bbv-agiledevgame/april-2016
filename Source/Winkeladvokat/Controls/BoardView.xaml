@@ -16,7 +16,7 @@
         <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
         <DataTemplate x:Key="TokenTemplate">
             <Ellipse Margin="3"
-                     Fill="Cyan"
+                     Fill="{Binding Token.Player.FillBrush}"
                      Stroke="Black"
                      StrokeThickness="5" />
         </DataTemplate>

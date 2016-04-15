@@ -7,16 +7,24 @@ namespace Winkeladvokat.Models
     [ImplementPropertyChanged]
     public class Player
     {
-        public Player(Position position, Color color)
+<<<<<<< HEAD
+        public Player(Position position)
+=======
+        public Player(Point position, Color color)
+>>>>>>> 35c3c58deef06227822ea501789094daffd056fd
         {
             this.Position = position;
             this.Color = color; 
         }
 
+<<<<<<< HEAD
+        public Position Position { get; set; }
+=======
         public Color Color { get; private set; }
 
         public Brush FillBrush { get { return new SolidColorBrush(this.Color); } }
 
-        public Position Position { get; set; }
+        public Point Position { get; set; }
+>>>>>>> 35c3c58deef06227822ea501789094daffd056fd
     }
 }

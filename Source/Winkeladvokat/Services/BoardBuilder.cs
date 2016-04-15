@@ -63,7 +63,7 @@ namespace Winkeladvokat.Services
                     fields[row].Add(new BoardField(
                         this.BoardFieldValues[row, column],
                         new SolidColorBrush(color),
-                        new Point(row, column)));
+                       new Models.Position(row, column)));
 
                     index++;
                 }

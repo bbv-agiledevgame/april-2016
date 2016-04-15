@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -17,10 +18,11 @@ namespace Winkeladvokat.ViewModels
         private readonly Board board;
         private readonly MovementFinder movementFinder;
         private IMovement currentMovement;
+        private BoardBuilder boardBuilder;
 
         public BoardViewModel()
         {
-            BoardBuilder boardBuilder = new BoardBuilder();
+            this.boardBuilder = new BoardBuilder();
             this.board = boardBuilder.CreateBoard();
             this.movementFinder = new MovementFinder(this.board);
             this.Players = this.InitializePlayers();
@@ -68,18 +70,17 @@ namespace Winkeladvokat.ViewModels
 
         private List<Player> InitializePlayers()
         {
-            var playersList = Utils.PlayerStartPositions.Select(pair => new Player(pair.Value)).ToList();
-
+            var playersList = Utils.PlayerStartPositions.Select(pair => new Player(pair.Value, this.boardBuilder.PlayerColors[pair.Key])).ToList();
             return playersList;
         }
 
         private void InitializeTokens()
         {
-            List<Point> corners = Utils.PlayerStartPositions.Select(x => x.Value).ToList();
+            List<Models.Position> corners = Utils.PlayerStartPositions.Select(x => x.Value).ToList();
             int index = 0;
             foreach (var cornerPosition in corners)
             {
-                BoardField field = this.Fields[(int)cornerPosition.Y][(int)cornerPosition.X];
+                BoardField field = this.Fields[cornerPosition.Y][cornerPosition.X];
 
                 if (field == null)
                 {
