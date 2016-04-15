@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Winkeladvokat.Services
 {
     using System.Collections.Generic;
@@ -18,7 +20,12 @@ namespace Winkeladvokat.Services
             { 0, 2, 2, 2, 2, 2, 2, 0 }
         };
 
-        private readonly int[] startPositions = { 0, 56, 63, 7 };
+        private readonly Dictionary<int, int[]> startPositionDictionary = new Dictionary<int, int[]>()
+        {
+            { 2, new int[] { 0, 63 } },
+            { 3, new int[] { 63, 7, 0 } },
+            { 4, new int[] { 0, 56, 63, 7 } }
+        };
 
         private readonly Color defaultColor = Colors.Transparent;
 
@@ -31,8 +38,9 @@ namespace Winkeladvokat.Services
         {
             var fields = new List<List<BoardField>>();
             this.InitializeFields(fields);
-            this.InitializeStartFields(fields, players);
-            var board = new Board(fields);
+            var enumerable = players as IList<Player> ?? players.ToList();
+            this.InitializeStartFields(fields, enumerable);
+            var board = new Board(fields, enumerable.Count);
 
             return board;
         }
@@ -56,10 +64,11 @@ namespace Winkeladvokat.Services
         private void InitializeStartFields(List<List<BoardField>> fields, IEnumerable<Player> players)
         {
             int index = 0;
-            foreach (var player in players)
+            var playerEnumerable = players as IList<Player> ?? players.ToList();
+            foreach (var player in playerEnumerable)
             {
-                int row = this.startPositions[index] / 8;
-                int column = this.startPositions[index] % 8;
+                int row = this.startPositionDictionary[playerEnumerable.Count][index] / 8;
+                int column = this.startPositionDictionary[playerEnumerable.Count][index] % 8;
 
                 BoardField startField = fields[row][column];
                 startField.FieldColor = new SolidColorBrush(player.Color);
