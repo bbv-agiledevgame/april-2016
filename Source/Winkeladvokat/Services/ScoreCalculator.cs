@@ -9,7 +9,14 @@ namespace Winkeladvokat.Services
 {
     public class ScoreCalculator
     {
-        public int GetPlayerScore(Player player, Board board)
+        public List<int> GetScores(List<Player> players, Board board)
+        {
+            var scoreList = players.Select(player => this.GetPlayerScore(player, board));
+
+            return scoreList.ToList();
+        }
+
+        private int GetPlayerScore(Player player, Board board)
         {
             var playerParagraphTokenFields =
                 board.Fields.SelectMany(row => row)

@@ -63,8 +63,17 @@
                 {
                     this.currentMovement = null;
                     this.CurrentPlayer = this.Players[(this.Players.IndexOf(this.CurrentPlayer) + 1) % 4];
-                    this.CurrentPlayer.Score = this.scoreCalculator.GetPlayerScore(this.CurrentPlayer, this.board);
+                    this.GetPlayerScores();
                 }
+            }
+        }
+
+        private void GetPlayerScores()
+        {
+            var scoresList = this.scoreCalculator.GetScores(this.Players, this.board);
+            for (var i = 0; i < scoresList.Count; i++)
+            {
+                this.Players[i].Score = scoresList[i];
             }
         }
 

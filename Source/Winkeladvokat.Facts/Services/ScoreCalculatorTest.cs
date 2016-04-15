@@ -19,18 +19,25 @@ namespace Winkeladvokat.Services
             BoardBuilder builder = new BoardBuilder();
             this.players = Enumerable.Range(0, 4).Select(x => new Player(Colors.Red)).ToList();
             this.board = builder.CreateBoard(this.players);
-        }
 
-        [Fact]
-        public void GetPlayerScore_WhenFirstPlayerPassed_ShouldReturnScoreOfFirstPlayer()
-        {
             this.board.Fields[0][2].Token = new Token(TokenType.Paragraph, this.players[0]);
             this.board.Fields[2][2].Token = new Token(TokenType.Paragraph, this.players[0]);
             this.board.Fields[3][3].Token = new Token(TokenType.Paragraph, this.players[0]);
 
-            this.players[0].Score = this.testee.GetPlayerScore(this.players[0], this.board);
+            this.board.Fields[1][1].Token = new Token(TokenType.Paragraph, this.players[1]);
+            this.board.Fields[2][1].Token = new Token(TokenType.Paragraph, this.players[1]);
+            this.board.Fields[3][1].Token = new Token(TokenType.Paragraph, this.players[1]);
+        }
+
+        [Fact]
+        public void GetScores_ShouldReturnAllScoresCorrectly()
+        {
+            var scoresList = this.testee.GetScores(this.players, this.board);
+            this.players[0].Score = scoresList[0];
+            this.players[1].Score = scoresList[1];
 
             this.players[0].Score.Should().Be(26);
+            this.players[1].Score.Should().Be(12);
         }
     }
 }
