@@ -62,7 +62,9 @@
                 if (movementEnded)
                 {
                     this.currentMovement = null;
-                    this.CurrentPlayer = this.Players[(this.Players.IndexOf(this.CurrentPlayer) + 1) % 4];
+                    this.CurrentPlayer.IsCurrent = false;
+                    this.CurrentPlayer = this.Players[(this.Players.IndexOf(this.CurrentPlayer) + 1) % this.Players.Count];
+                    this.CurrentPlayer.IsCurrent = true;
                     this.GetPlayerScores();
                 }
             }
