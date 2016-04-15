@@ -14,7 +14,7 @@ namespace Winkeladvokat.Services
         [Fact]
         public void GetMovement_WhenFieldIsEmpty_ThenShouldReturnAngleMovement()
         {
-            Player player = new Player(new Models.Position(0, 0), new Color());
+            Player player = new Player(new Models.Position(0, 0), default(Color));
             BoardField selectedField = BoardField.Empty;
             BoardField playerField = BoardField.Empty;
             playerField.Token = new AdvocateToken(player);
