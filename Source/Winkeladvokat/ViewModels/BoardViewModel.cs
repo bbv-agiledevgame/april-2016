@@ -16,6 +16,7 @@
         private readonly Board board;
         private readonly MovementFinder movementFinder;
         private readonly Color[] playerColors = { Colors.Red, Colors.Green, Colors.Blue, Colors.Yellow };
+        private readonly ScoreCalculator scoreCalculator;
 
         private IMovement currentMovement;
 
@@ -23,6 +24,7 @@
         {
             this.Players = this.InitializePlayers();
             this.CurrentPlayer = this.Players[0];
+            this.scoreCalculator = new ScoreCalculator();
 
             BoardBuilder boardBuilder = new BoardBuilder();
             this.board = boardBuilder.CreateBoard(this.Players);
@@ -61,7 +63,17 @@
                 {
                     this.currentMovement = null;
                     this.CurrentPlayer = this.Players[(this.Players.IndexOf(this.CurrentPlayer) + 1) % 4];
+                    this.GetPlayerScores();
                 }
+            }
+        }
+
+        private void GetPlayerScores()
+        {
+            var scoresList = this.scoreCalculator.GetScores(this.Players, this.board);
+            for (var i = 0; i < scoresList.Count; i++)
+            {
+                this.Players[i].Score = scoresList[i];
             }
         }
 
