@@ -97,6 +97,7 @@
     <Compile Include="Controls\BoardView.xaml.cs">
       <DependentUpon>BoardView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\ScoreCalculator.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

@@ -27,7 +27,7 @@ namespace Winkeladvokat
                 boardViewModel.SelectField.Execute(boardViewModel.Fields[1][3]);
             });
 
-            "it shhould have moved the paragraph token to the destination field"._(() =>
+            "it should have moved the paragraph token to the destination field"._(() =>
             {
                 boardViewModel.Fields[1][3].Token.Should().BeOfType<ParagraphToken>();
                 boardViewModel.Fields[1][3].Token.Player.Should().Be(boardViewModel.Players[0]);

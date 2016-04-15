@@ -17,5 +17,7 @@
         {
             get { return new SolidColorBrush(this.Color); }
         }
+
+        public int Score { get; set; }
     }
 }
