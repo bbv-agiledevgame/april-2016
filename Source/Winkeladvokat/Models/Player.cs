@@ -10,7 +10,12 @@
         {
             this.Color = color;
         }
-        
+
         public Color Color { get; set; }
+
+        public Brush FillBrush
+        {
+            get { return new SolidColorBrush(Color); }
+        }
     }
 }
