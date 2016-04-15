@@ -15,6 +15,8 @@ namespace Winkeladvokat.Models
 
         public TokenType Type { get; private set; }
 
+        public int Margin => this.GetMarginFromType(this.Type);
+
         protected Token()
         {
             this.Player = null;
@@ -29,6 +31,12 @@ namespace Winkeladvokat.Models
         public Token(TokenType type, Player player) : this(type)
         {
             this.Player = player;
+        }
+
+        private int GetMarginFromType(TokenType type)
+        {
+            int margin = type == TokenType.Advocate ? 3 : 10;
+            return margin;
         }
     }
 

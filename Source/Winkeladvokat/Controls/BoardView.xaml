@@ -15,7 +15,7 @@
         <converter:FieldValueToVisibilityConverter x:Key="FieldValueConverter" />
         <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
         <DataTemplate x:Key="TokenTemplate">
-            <Ellipse Margin="3"
+            <Ellipse Margin="{Binding Token.Margin}"
                      Fill="{Binding Token.Player.FillBrush}"
                      Stroke="Black"
                      StrokeThickness="5" />
