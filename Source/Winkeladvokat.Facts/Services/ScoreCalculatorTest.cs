@@ -17,7 +17,7 @@ namespace Winkeladvokat.Services
         {
             this.testee = new ScoreCalculator();
             BoardBuilder builder = new BoardBuilder();
-            this.players = Enumerable.Range(0, 4).Select(x => new Player(Colors.Red)).ToList();
+            this.players = Enumerable.Range(0, 4).Select(x => new Player(Colors.Cyan)).ToList();
             this.board = builder.CreateBoard(this.players);
 
             this.board.Fields[0][2].Token = new Token(TokenType.Paragraph, this.players[0]);

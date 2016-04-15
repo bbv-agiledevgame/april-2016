@@ -74,10 +74,10 @@
         {
             return new[]
                        {
-                            new Player(Colors.Red),
+                            new Player(Colors.Cyan),
                             new Player(Colors.Blue),
                             new Player(Colors.Yellow),
-                            new Player(Colors.Green)
+                            new Player(Colors.Magenta)
                        };
         }
     }

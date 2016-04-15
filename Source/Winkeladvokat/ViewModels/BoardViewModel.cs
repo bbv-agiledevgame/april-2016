@@ -15,7 +15,7 @@
     {
         private readonly Board board;
         private readonly MovementFinder movementFinder;
-        private readonly Color[] playerColors = { Colors.Red, Colors.Green, Colors.Blue, Colors.Yellow };
+        private readonly Color[] playerColors = { Colors.Cyan, Colors.Magenta, Colors.Blue, Colors.Yellow };
         private readonly ScoreCalculator scoreCalculator;
 
         private IMovement currentMovement;
