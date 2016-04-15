@@ -6,6 +6,7 @@ namespace Winkeladvokat.Models
     public class ParagraphToken : Token
     {
         public ParagraphToken(Player player)
+            : base(player)
         {
         }
     }
