@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Media;
-
-namespace Winkeladvokat.Services
+﻿namespace Winkeladvokat.Services
 {
+    using System.Collections.Generic;
+    using System.Windows.Media;
     using FluentAssertions;
     using Models;
     using Movements;
@@ -14,7 +12,7 @@ namespace Winkeladvokat.Services
         [Fact]
         public void GetMovement_WhenFieldIsEmpty_ThenShouldReturnAngleMovement()
         {
-            Player player = new Player(new Models.Position(0, 0), default(Color));
+            Player player = new Player(Colors.Transparent);
             BoardField selectedField = BoardField.Empty;
             BoardField playerField = BoardField.Empty;
             playerField.Token = new AdvocateToken(player);

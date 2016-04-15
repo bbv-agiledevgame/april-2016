@@ -79,11 +79,9 @@
     <Compile Include="Movements\AngleMovement.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\GlobalAssemblyInfo.cs" />
-    <Compile Include="PropertyChangedBase.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\MovementFinder.cs" />
-    <Compile Include="Utils.cs" />
     <Page Include="Controls\BoardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -1,7 +1,6 @@
 namespace Winkeladvokat.Services
 {
     using System.Collections.Generic;
-    using System.Windows;
     using System.Windows.Media;
     using Models;
 
@@ -19,31 +18,20 @@ namespace Winkeladvokat.Services
             { 0, 2, 2, 2, 2, 2, 2, 0 }
         };
 
-        public Color[] PlayerColors
-        {
-            get
-            {
-                return new[]
-                {
-                    Colors.Cyan,
-                    Colors.Magenta,
-                    Colors.Yellow,
-                    Colors.Blue
-                };
-            }
-        }
+        private readonly int[] startPositions = { 0, 56, 63, 7 };
+
+        private readonly Color defaultColor = Colors.Transparent;
 
         public int[,] BoardFieldValues
         {
             get { return this.boardFieldValues; }
         }
 
-        public Board CreateBoard()
+        public Board CreateBoard(IEnumerable<Player> players)
         {
             var fields = new List<List<BoardField>>();
-
             this.InitializeFields(fields);
-
+            this.InitializeStartFields(fields, players);
             var board = new Board(fields);
 
             return board;
@@ -51,62 +39,34 @@ namespace Winkeladvokat.Services
 
         private void InitializeFields(List<List<BoardField>> fields)
         {
-            var index = 0;
             for (var row = 0; row < 8; row++)
             {
                 fields.Add(new List<BoardField>());
 
                 for (var column = 0; column < 8; column++)
                 {
-                    Color color = this.GetFieldColor(index);
-
                     fields[row].Add(new BoardField(
                         this.BoardFieldValues[row, column],
-                        new SolidColorBrush(color),
-                       new Models.Position(row, column)));
-
-                    index++;
+                        new SolidColorBrush(this.defaultColor),
+                        new Position(row, column)));
                 }
             }
         }
 
-        private Color GetFieldColor(int index)
+        private void InitializeStartFields(List<List<BoardField>> fields, IEnumerable<Player> players)
         {
-            var specialColors = this.GetPlayerStartFields();
-            Color defaultColor = Colors.Transparent;
-
-            if (specialColors.ContainsKey(index))
+            int index = 0;
+            foreach (var player in players)
             {
-                return specialColors[index];
+                int row = this.startPositions[index] / 8;
+                int column = this.startPositions[index] % 8;
+
+                BoardField startField = fields[row][column];
+                startField.FieldColor = new SolidColorBrush(player.Color);
+                startField.Token = new AdvocateToken(player);
+
+                index++;
             }
-
-            return defaultColor;
-        }
-
-        private Dictionary<int, Color> GetPlayerStartFields()
-        {
-            int columns = this.boardFieldValues.GetLength(0) - 1;
-            int rows = this.boardFieldValues.GetLength(1) - 1;
-
-            int firstPlayerPosition = this.GetFieldIndex(0, 0);
-            int secondPlayerPosition = this.GetFieldIndex(0, columns);
-            int thirdPlayerPosition = this.GetFieldIndex(rows, 0);
-            int fourthPlayerPosition = this.GetFieldIndex(rows, columns);
-
-            Dictionary<int, Color> specialColors = new Dictionary<int, Color>
-            {
-                { firstPlayerPosition, this.PlayerColors[0] },
-                { secondPlayerPosition, this.PlayerColors[1] },
-                { thirdPlayerPosition, this.PlayerColors[2] },
-                { fourthPlayerPosition, this.PlayerColors[3] }
-            };
-
-            return specialColors;
-        }
-
-        private int GetFieldIndex(int row, int column)
-        {
-            return row * this.boardFieldValues.GetLength(0) + column;
         }
     }
 }

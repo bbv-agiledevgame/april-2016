@@ -1,7 +1,7 @@
-﻿using Winkeladvokat.Models;
-
-namespace Winkeladvokat.Movements
+﻿namespace Winkeladvokat.Movements
 {
+    using Winkeladvokat.Models;
+
     public class AngleMovement : IMovement
     {
         private readonly BoardField startField;
