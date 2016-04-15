@@ -13,7 +13,7 @@ namespace Winkeladvokat.Movements
         {
             BoardField startField = BoardField.Empty;
             Player player = new Player(Colors.Red);
-            startField.Token = new AdvocateToken(player);
+            startField.Token = new Token(TokenType.Advocate, player);
             BoardField selectedField = BoardField.Empty;
             AngleMovement testee = new AngleMovement(startField);
 
@@ -25,7 +25,7 @@ namespace Winkeladvokat.Movements
         [Fact]
         public void SelectField_WhenFirstFieldHasBeenSelected_ThenDoNotMoveToken()
         {
-            AdvocateToken token = new AdvocateToken();
+            Token token = new Token(TokenType.Advocate);
             BoardField startField = BoardField.Empty;
             startField.Token = token;
 
@@ -35,13 +35,13 @@ namespace Winkeladvokat.Movements
             testee.SelectField(selectedField);
 
             startField.Token.Should().Be(token);
-            selectedField.Token.Should().BeOfType<ParagraphToken>();
+            selectedField.Token.Type.Should().Be(TokenType.Paragraph);
         }
 
         [Fact]
         public void SelectField_WhenFirstFieldHasBeenSelected_ThenParagraphTokenShoulBePlaced()
         {
-            AdvocateToken token = new AdvocateToken();
+            Token token = new Token(TokenType.Advocate);
             BoardField startField = BoardField.Empty;
             startField.Token = token;
 
@@ -50,14 +50,14 @@ namespace Winkeladvokat.Movements
 
             testee.SelectField(selectedField);
 
-            selectedField.Token.Should().BeOfType<ParagraphToken>();
+            selectedField.Token.Type.Should().Be(TokenType.Paragraph);
         }
 
         [Fact]
         public void SelectField_WhenFirstFieldHasBeenSelected_ThenParagraphTokenShoulBeFromCorrectPlayer()
         {
             Player player = new Player(Colors.Red);
-            AdvocateToken token = new AdvocateToken(player);
+            Token token = new Token(TokenType.Advocate, player);
             BoardField startField = BoardField.Empty;
             startField.Token = token;
 
@@ -72,7 +72,7 @@ namespace Winkeladvokat.Movements
         [Fact]
         public void SelectField_WhenSecondFieldHasBeenSelected_ThenMoveTokenToSecondField()
         {
-            AdvocateToken token = new AdvocateToken();
+            Token token = new Token(TokenType.Advocate);
             BoardField startField = BoardField.Empty;
             startField.Token = token;
 
@@ -84,7 +84,7 @@ namespace Winkeladvokat.Movements
             testee.SelectField(secondSelectedField);
 
             startField.Token.Should().BeNull("start field should not have a token after angle move");
-            firstSelectedField.Token.Should().BeOfType<ParagraphToken>();
+            firstSelectedField.Token.Type.Should().Be(TokenType.Paragraph);
             secondSelectedField.Token.Should().Be(token);
         }
 
@@ -93,7 +93,7 @@ namespace Winkeladvokat.Movements
         {
             BoardField startField = BoardField.Empty;
             Player player = new Player(Colors.Red);
-            startField.Token = new AdvocateToken(player);
+            startField.Token = new Token(TokenType.Advocate, player);
             BoardField firstSelectedField = BoardField.Empty;
             BoardField secondSelectedField = BoardField.Empty;
             AngleMovement testee = new AngleMovement(startField);

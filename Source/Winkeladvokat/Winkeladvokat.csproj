@@ -70,9 +70,7 @@
     <Compile Include="Services\BoardBuilder.cs" />
     <Compile Include="Commands\ActionCommand.cs" />
     <Compile Include="Converter\FieldValueToVisibilityConverter.cs" />
-    <Compile Include="Models\AdvocateToken.cs" />
     <Compile Include="Models\BoardField.cs" />
-    <Compile Include="Models\ParagraphToken.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Token.cs" />
     <Compile Include="Models\Board.cs" />

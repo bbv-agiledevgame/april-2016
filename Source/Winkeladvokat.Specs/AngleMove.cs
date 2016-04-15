@@ -23,13 +23,13 @@
 
             "it should put current player token on new field"._(() =>
             {
-                boardViewModel.Fields[7][6].Token.Should().BeOfType<AdvocateToken>();
+                boardViewModel.Fields[7][6].Token.Type.Should().Be(TokenType.Advocate);
                 boardViewModel.Fields[7][6].Token.Player.Should().Be(boardViewModel.Players[0]);
             });
 
             "it should place paragraph token on first clicked field"._(() =>
             {
-                boardViewModel.Fields[0][6].Token.Should().BeOfType<ParagraphToken>();
+                boardViewModel.Fields[0][6].Token.Type.Should().Be(TokenType.Paragraph);
                 boardViewModel.Fields[0][6].Token.Player.Should().Be(boardViewModel.Players[0]);
             });
 

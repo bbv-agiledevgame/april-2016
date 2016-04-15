@@ -15,7 +15,7 @@
             Player player = new Player(Colors.Transparent);
             BoardField selectedField = BoardField.Empty;
             BoardField playerField = BoardField.Empty;
-            playerField.Token = new AdvocateToken(player);
+            playerField.Token = new Token(TokenType.Advocate, player);
             Board board = new Board(new List<List<BoardField>>(new[] { new List<BoardField> { selectedField, playerField } }));
             MovementFinder testee = new MovementFinder(board);
 
@@ -29,7 +29,7 @@
         {
             Player player = new Player(Colors.Transparent);
             BoardField selectedField1 = new BoardField(0, default(Brush), new Position(1, 1));
-            selectedField1.Token = new ParagraphToken(player);
+            selectedField1.Token = new Token(TokenType.Paragraph, player);
             BoardField selectedField2 = new BoardField(0, default(Brush), new Position(1,2));
             
             Board board = new Board(new List<List<BoardField>>(new[] { new List<BoardField> { selectedField1, selectedField2 } }));
