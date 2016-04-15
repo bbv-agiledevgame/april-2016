@@ -29,7 +29,7 @@
         {
             Player player = new Player(Colors.Transparent);
             BoardField selectedField1 = new BoardField(0, default(Brush), new Position(1, 1));
-            selectedField1.Token = new ParagraphToken(player);
+            selectedField1.Token = new Token(TokenType.Paragraph, player);
             BoardField selectedField2 = new BoardField(0, default(Brush), new Position(1,2));
             
             Board board = new Board(new List<List<BoardField>>(new[] { new List<BoardField> { selectedField1, selectedField2 } }));
