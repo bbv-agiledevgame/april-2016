@@ -7,7 +7,6 @@ namespace Winkeladvokat.Models
     {
         public ParagraphToken(Player player)
         {
-            this.Player = player;
         }
     }
 }
