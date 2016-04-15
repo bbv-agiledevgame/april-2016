@@ -15,7 +15,7 @@
 
         public Brush FillBrush
         {
-            get { return new SolidColorBrush(Color); }
+            get { return new SolidColorBrush(this.Color); }
         }
     }
 }
