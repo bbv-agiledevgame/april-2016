@@ -17,7 +17,7 @@
             if (this.firstSelectedField == null)
             {
                 this.firstSelectedField = field;
-
+                this.firstSelectedField.Token = new ParagraphToken(this.startField.Token.Player);
                 return false;
             }
 

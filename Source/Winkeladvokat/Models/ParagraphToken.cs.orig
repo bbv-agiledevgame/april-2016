@@ -5,6 +5,11 @@ namespace Winkeladvokat.Models
     [ImplementPropertyChanged]
     public class ParagraphToken : Token
     {
+<<<<<<< HEAD
+        public ParagraphToken() { }
+
+=======
+>>>>>>> ab42417d2d733c354effa41471c7a24e11463c52
         public ParagraphToken(Player player)
         {
             this.Player = player;

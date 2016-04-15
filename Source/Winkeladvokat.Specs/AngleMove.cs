@@ -27,6 +27,12 @@
                 boardViewModel.Fields[7][6].Token.Player.Should().Be(boardViewModel.Players[0]);
             });
 
+            "it should place paragraph token on first clicked field"._(() =>
+            {
+                boardViewModel.Fields[0][6].Token.Should().BeOfType<ParagraphToken>();
+                boardViewModel.Fields[0][6].Token.Player.Should().Be(boardViewModel.Players[0]);
+            });
+
             "it should clear token on player's previous field"._(() =>
             {
                 boardViewModel.Fields[0][0].Token.Should().BeNull();
