@@ -19,5 +19,7 @@
         }
 
         public int Score { get; set; }
+
+        public bool IsCurrent { get; set; }
     }
 }
